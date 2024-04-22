@@ -16,24 +16,24 @@ const Home = () => {
         <div className="flex gap-10 items-center flex-col lg:flex-row slider-container">
           <Carousel className="w-[100%]">
             <img
-              src="assets/slide-1.png"
-              className="w-[100%] h-[200px] lg:h-[500px] rounded-md overflow-hidden"
+              src="assets/slide-1.jpg"
+              className="w-[100%] h-[200px] lg:h-[500px] rounded-2xl overflow-hidden"
               alt="Slide 1"
             />
             <img
-              src="assets/slide-2.png"
-              className="w-[100%] h-[200px] lg:h-[500px] rounded-md overflow-hidden"
+              src="assets/slide-2.jpg"
+              className="w-[100%] h-[200px] lg:h-[500px] rounded-2xl overflow-hidden"
               alt="Slide 2"
             />
             <img
-              src="assets/slide-3.png"
-              className="w-[100%] h-[200px] lg:h-[500px] rounded-md overflow-hidden"
+              src="assets/slide-3.jpg"
+              className="w-[100%] h-[200px] lg:h-[500px] rounded-2xl overflow-hidden"
               alt="Slide 3"
             />
           </Carousel>
         </div>
       </section>
-      <section className="products mt-16 py-10 px-1 xl:px-72 ">
+      <section className="products px-1 xl:px-72 ">
         <h1 className="section-heading">Tavsiyalar</h1>
         <AProducts />
       </section>

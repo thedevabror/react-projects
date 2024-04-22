@@ -1,13 +1,9 @@
 import React from "react";
+import Carousel from "react-material-ui-carousel";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { MdArrowForwardIos } from "react-icons/md";
-
-// import hero from "../assets/hero-2.webp";
-import { Women } from "../utils/svgs";
-import Carousel from "react-material-ui-carousel";
 import { AProducts, CheapProducts } from "../components";
-import { Link } from "react-router-dom";
+
 
 const Home = () => {
   return (
@@ -39,6 +35,9 @@ const Home = () => {
       </section>
       <section className="products mt-16 py-10 px-1 xl:px-72 ">
         <CheapProducts />
+      </section>
+      <section className="products mt-16 py-10 px-1 xl:px-72 ">
+
       </section>
     </>
   );

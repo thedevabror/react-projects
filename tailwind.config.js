@@ -6,10 +6,10 @@ module.exports = {
       colors: {
         primary: "#F8991D",
         secondary: "#000000",
-        third: "#f5f5f7",
+        third: "#cdcdcd",
       },
       fontFamily: {
-        custom: ["Creattion", "cursive"],
+        custom: ["Roboto", "sans-serif"],
       },
     },
   },

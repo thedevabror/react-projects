@@ -1,6 +1,18 @@
 .section-heading {
-  font-size: 26px;
-  font-weight: 900;
-  line-height: 32px;
-  margin-bottom: 30px;
+  font-size: 24px;
+  /* font-weight: 900; */
+  /* line-height: 32px; */
+}
+
+body{
+  background-color: #fff;
+}
+
+.slick-track {
+  display: flex !important;
+  gap: 1.25rem;
+}
+
+.slick-arrow{
+  display: none !important;
 }

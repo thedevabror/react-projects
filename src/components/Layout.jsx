@@ -4,7 +4,7 @@ import { Footer, Header } from ".";
 
 const Layout = () => {
   return (
-    <div className="font-custom">
+    <div>
       <Header />
       <Outlet />
       <Footer />

@@ -57,7 +57,7 @@ const CheapProducts = () => {
         <div className="flex items-center justify-between">
           <Link className="flex items-center gap-2">
             <h1 className="section-heading mb-0">Arzon narxlar</h1>
-            <MdArrowForwardIos />
+            <MdArrowForwardIos className="section-heading" />
           </Link>
           <div className="flex flex-row items-center gap-2">
             <div

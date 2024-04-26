@@ -1,0 +1,1 @@
+export const base_url = "https://e-shop-backend-kappa.vercel.app/api/";

@@ -3,6 +3,7 @@ import Carousel from "react-material-ui-carousel";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AProducts, CheapProducts } from "../components";
+import CategoriesProducts from "../components/CategoriesProducts";
 
 
 const Home = () => {
@@ -37,7 +38,7 @@ const Home = () => {
         <CheapProducts />
       </section>
       <section className="products mt-16 py-10 px-1 xl:px-72 ">
-
+        <CategoriesProducts />
       </section>
     </>
   );

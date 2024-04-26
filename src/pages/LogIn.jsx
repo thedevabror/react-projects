@@ -1,34 +1,33 @@
-import axios from "axios";
 import React from "react";
-import { base_url } from "../services/baseUrl";
 import { useDispatch, useSelector } from "react-redux";
-import { logInUserFailure, logInUserStart, logInUserSuccess, signUserStart } from "../app/slice/auth";
+import { logInUserFailure, logInUserStart, logInUserSuccess } from "../app/slice/auth";
 import { Link, useNavigate } from "react-router-dom";
+import AuthService from "../services/auth.service";
 
 const LogIn = () => {
   const { isLoading } = useSelector((state) => state.auth);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   console.log(isLoading);
-  const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const username = formData.get("email");
     const password = formData.get("password");
-    const data = {
+    const user = {
       email: username,
       password: password,
     };
-    dispatch(logInUserStart());
+    dispatch(logInUserStart())
     try {
-      const respons = await axios.post(`${base_url}user/login`, data);
-      dispatch(logInUserSuccess(respons.data));
-      console.log(respons);
-      console.log(respons.data);
+      const response = await AuthService.userLogin(user)
+      dispatch(logInUserSuccess(response))
+      console.log(response)
+      navigate('/panel')
     } catch (error) {
-      console.log(error);
-      dispatch(logInUserFailure(error));
+      dispatch(logInUserFailure(error))
     }
-    console.log(data);
+    
   };
   return (
     <section className="bg-gradient-to-r from-red-50 to-zinc-300">
@@ -105,12 +104,12 @@ const LogIn = () => {
                     </label>
                   </div>
                 </div>
-                <a
-                  href="#"
+                <Link
+                  to={'/forgot-password'}
                   className="text-sm font-medium text-primary hover:underline dark:text-primary-500"
                 >
                   Parolni unutdingizmi?
-                </a>
+                </Link>
               </div>
               <button
                 type="submit"

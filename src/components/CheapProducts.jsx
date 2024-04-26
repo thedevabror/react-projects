@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { HiMiniStar } from "react-icons/hi2";
 import { AddCart } from "../utils/svgs";

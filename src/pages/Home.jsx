@@ -31,7 +31,6 @@ const Home = () => {
         </div>
       </section>
       <section className="products px-1 xl:px-72 ">
-        <h1 className="section-heading">Tavsiyalar</h1>
         <AProducts />
       </section>
       <section className="products mt-16 py-10 px-1 xl:px-72 ">

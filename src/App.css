@@ -153,6 +153,9 @@
   --graphics-logo: var(--uzum-violet-bb01);
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -182,6 +185,7 @@ input::-webkit-inner-spin-button {
 
 body {
   background-color: #fff;
+  font-family: 'Roboto', sans-serif;
 }
 
 .slick-track {
@@ -191,4 +195,21 @@ body {
 
 .slick-arrow {
   display: none !important;
+}
+
+li {
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+.button {
+  border-radius: 12px;
+  column-gap: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  height: 56px;
+  letter-spacing: 0.004em;
+  line-height: 20px;
+  padding: 0 18px;
+  text-align: center;
 }

@@ -6,7 +6,7 @@ import ProductDetails from "./components/ProductDetails";
 
 function App() {
   return (
-    <>
+    <div className="transition-all duration-300">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -17,7 +17,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </>
+    </div>
   );
 }
 

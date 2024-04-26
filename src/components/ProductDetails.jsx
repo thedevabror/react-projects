@@ -36,7 +36,7 @@ const ProductDetails = () => {
   console.log("ID for params:", id);
   return (
     <>
-      <div className="grid grid-cols-2  gap-20 py-32 px-10 lg:px-72">
+      <div className="grid grid-cols-1 min-[800px]:grid-cols-2  gap-20 py-32 px-10 2xl:px-72">
         <div className="flex flex-col gap-10">
           {product?.images && product.images.length > 0 && (
             <img
@@ -78,7 +78,7 @@ const ProductDetails = () => {
             <div className="text-[14px]">
               <button className="flex items-center gap-2">
                 <IoMdHeartEmpty className="text-xl" />
-                <p>Istaklarga</p>
+                <p className="hidden min-[965px]:block">Istaklarga</p>
               </button>
             </div>
           </div>

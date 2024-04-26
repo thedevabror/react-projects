@@ -15,6 +15,15 @@ import { HiOutlineUser } from "react-icons/hi2";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { BsCart2 } from "react-icons/bs";
 import { IoIosSearch } from "react-icons/io";
+import { Drawer } from "@mui/material";
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -48,6 +57,43 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+
+  const toggleDrawer = (newOpen) => () => {
+    setMobileMoreAnchorEl(null)
+    setOpen(newOpen);
+
+  };
+
+  // const DrawerList = (
+  //   <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+  //     <List>
+  //       {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+  //         <ListItem key={text} disablePadding>
+  //           <ListItemButton>
+  //             <ListItemIcon>
+  //               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+  //             </ListItemIcon>
+  //             <ListItemText primary={text} />
+  //           </ListItemButton>
+  //         </ListItem>
+  //       ))}
+  //     </List>
+  //     <Divider />
+  //     <List>
+  //       {['All mail', 'Trash', 'Spam'].map((text, index) => (
+  //         <ListItem key={text} disablePadding>
+  //           <ListItemButton>
+  //             <ListItemIcon>
+  //               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+  //             </ListItemIcon>
+  //             <ListItemText primary={text} />
+  //           </ListItemButton>
+  //         </ListItem>
+  //       ))}
+  //     </List>
+  //   </Box>
+  // );
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -58,38 +104,13 @@ const Header = () => {
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
+  }
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
   const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -151,25 +172,14 @@ const Header = () => {
         </IconButton>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          edge="end"
-          aria-label="account of current user"
-          aria-controls={menuId}
-          aria-haspopup="true"
-          onClick={handleProfileMenuOpen}
-          color="inherit"
-        >
-          <Link
-            to={"/login"}
-            className="flex items-center hover:bg-third rounded-md px-3 text-[19px]"
-          >
-            <BsCart2 className="text-[24px]" />
-            <div className="p-3 rounded-2xl">
-              <Link to={"/login"}>Savat</Link>
-            </div>
-          </Link>
-        </IconButton>
+      
+      <button className="flex items-center hover:bg-third rounded-md m-2 px-2 text-[19px]" onClick={toggleDrawer(true)}>
+              <BsCart2 className="text-[24px]" />
+              <div className="p-3 rounded-2xl">
+                <button>Savat</button>
+              </div>
+            </button>
+
       </MenuItem>
     </Menu>
   );
@@ -179,7 +189,7 @@ const Header = () => {
       <AppBar
         position="static"
         className="px- lg:px-32"
-        sx={{ bgcolor: "transparent", boxShadow: "none"}}
+        sx={{ bgcolor: "transparent", boxShadow: "none" }}
       >
         <Toolbar className="bg-transparent px-20 text-secondary">
           <IconButton
@@ -197,7 +207,7 @@ const Header = () => {
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            <Link to={'/'}>Trendify</Link>
+            <Link to={"/"}>Trendify</Link>
           </Typography>
           <Box sx={{ width: "50%" }} className="rounded-md overflow-hidden">
             <Search className="flex items-center border">
@@ -214,34 +224,31 @@ const Header = () => {
           <Box sx={{ flexGrow: 1 }} />
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <Link
-                to={"/login"}
-                className="flex items-center hover:bg-third rounded-md m-2 px-2 text-[19px]"
-              >
-                <HiOutlineUser className="text-[24px]" />
-                <div className="p-3 rounded-2xl text-[20px]">
-                  <Link to={"/login"}>Kirish</Link>
-                </div>
-              </Link>
-            
-              <Link
-                to={"/login"}
-                className="flex items-center hover:bg-third rounded-md m-2 px-2 text-[19px]"
-              >
-                <IoMdHeartEmpty className="text-[24px]" />
-                <div className="p-3 rounded-2xl">
-                  <Link to={"/login"}>Saralanganlar</Link>
-                </div>
-              </Link>
-              <Link
-                to={"/login"}
-                className="flex items-center hover:bg-third rounded-md m-2 px-2 text-[19px]"
-              >
-                <BsCart2 className="text-[24px]" />
-                <div className="p-3 rounded-2xl">
-                  <Link to={"/login"}>Savat</Link>
-                </div>
-              </Link>
+            <Link
+              to={"/login"}
+              className="flex items-center hover:bg-third rounded-md m-2 px-2 text-[19px]"
+            >
+              <HiOutlineUser className="text-[24px]" />
+              <div className="p-3 rounded-2xl text-[20px]">
+                <Link to={"/login"}>Kirish</Link>
+              </div>
+            </Link>
+
+            <Link
+              to={"/login"}
+              className="flex items-center hover:bg-third rounded-md m-2 px-2 text-[19px]"
+            >
+              <IoMdHeartEmpty className="text-[24px]" />
+              <div className="p-3 rounded-2xl">
+                <Link to={"/login"}>Saralanganlar</Link>
+              </div>
+            </Link>
+            <button className="flex items-center hover:bg-third rounded-md m-2 px-2 text-[19px]" onClick={toggleDrawer(true)}>
+              <BsCart2 className="text-[24px]" />
+              <div className="p-3 rounded-2xl">
+                <button>Savat</button>
+              </div>
+            </button>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -258,7 +265,12 @@ const Header = () => {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
+      <Drawer anchor="right" open={open} onClose={toggleDrawer(false)} className="w-[300px]">
+        <div className="w-[300px]">
+        <h1 className="product-heading text-center py-10">Your cart</h1>
+
+        </div>
+      </Drawer>
     </Box>
   );
 };

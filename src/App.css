@@ -167,11 +167,9 @@ input::-webkit-inner-spin-button {
   font-size: 28px;
   font-weight: 700;
   line-height: 36px;
-  margin-bottom: 21px;
   margin-top: 0;
   text-decoration: none;
   width: max-content;
-  /* letter-spacing: 1.3px; */
 }
 
 .product-heading {

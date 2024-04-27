@@ -162,7 +162,7 @@ const ProductDetails = () => {
             />
           </div>
           <div>
-            <button className="px-10 border text-xl button bg-purple-600 hover:bg-primary/85 text-[#fff]">Savatga qo'shish</button>
+            <button className="px-10 text-xl button bg-purple-600 hover:bg-primary/85 text-[#fff]">Savatga qo'shish</button>
           </div>
         </div>
       </div>{" "}

@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AProducts, CheapProducts } from "../components";
 import CategoriesProducts from "../components/CategoriesProducts";
+import Categories from "../components/Categories";
 
 
 const Home = () => {
@@ -38,6 +39,7 @@ const Home = () => {
       </section>
       <section className="products mt-16 py-10 px-1 xl:px-72 ">
         <CategoriesProducts />
+        {/* <Categories /> */}
       </section>
     </>
   );

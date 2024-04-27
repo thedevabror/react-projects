@@ -97,7 +97,7 @@ const CategoriesProducts = () => {
                 ) : (
                   <div className="flex items-center justify-between">
                     <Link className="flex items-center gap-2" to={item._id}>
-                      <h1 className="section-heading mb-0">{item.title}</h1>
+                      <h1 className="section-heading mb-0">{item.title.split(' ').slice(2).join(' ')}</h1>
                       <MdArrowForwardIos className="section-heading" />
                     </Link>
 

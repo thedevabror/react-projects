@@ -18,16 +18,20 @@ const AuthService = {
     );
     return data;
   },
-  async userWishList() {
-    const { data } = await axios.get(`${base_url}user/wishlist`, config);
+  async updatePassword(password) {
+    const { data } = axios.put(`${base_url}user/password`, config, password);
+    return data;
+  },
+  async userWishList(_id) {
+    const { data } = await axios.get(`${base_url}user/wishlist`, config, _id);
     return data;
   },
   async userCartAdd(product) {
     const { data } = await axios.post(`${base_url}user/cart`, config, product);
     return data;
   },
-  async userCart(product) {
-    const { data } = await axios.get(`${base_url}user/cart`, config, product);
+  async userCart(_id) {
+    const { data } = await axios.get(`${base_url}user/cart`, config, _id);
     return data;
   },
   async applyCoupon(coupon) {
@@ -50,8 +54,21 @@ const AuthService = {
     const { data } = await axios.get(`${base_url}user/get-orders`, config, id);
     return data;
   },
-  async emptyCart() {
-    const {data} = await axios.delete(`${base_url}`)
+  async emptyCart(product) {
+    const { data } = await axios.delete(`${base_url}user/empty-cart`, config, product);
+    return data;
+  },
+  async editUser(user) {
+    const { data } = await axios.put(`${base_url}user/edit-user`, config, user);
+    return data;
+  },
+  async saveAddress(address) {
+    const { data } = await axios.put(`${base_url}user/save-address`, config, address);
+    return data;
+  },
+  async logOut() {
+    const { data } = await axios.get(`${base_url}user/logout`);
+    return data;
   },
 };
 

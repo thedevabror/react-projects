@@ -53,6 +53,9 @@ const Header = () => {
               </nav>
             </div>
             <div className="justify-end pr-16 lg:pr-0 hidden min-[420px]:block">
+              <button>
+                savat
+              </button>
               <Link
                 to={"/login"}
                 className="px-7 py-3 text-base font-medium text-dark hover:text-primary dark:text-white"

@@ -59,13 +59,12 @@ const CategoriesProducts = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     const getCategories = async () => {
-      const response = await axios.get(`${base_url}category`);
-      // const res = await axios.get(`${base_url}product`);
+      const response = await ProductService.getCategories();
       const res = await ProductService.getAllProducts()
       dispatch(getCategoryStart());
       try {
         setTimeout(() => {
-          dispatch(getCategorySucces(response.data));
+          dispatch(getCategorySucces(response));
           dispatch(getProductSucces(res));
         }, 5555);
         console.log(res);

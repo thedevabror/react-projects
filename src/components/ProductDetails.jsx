@@ -6,44 +6,53 @@ import { useDispatch, useSelector } from "react-redux";
 import { GoPlus } from "react-icons/go";
 import { TbMinus } from "react-icons/tb";
 import ProductService from "../services/product.service";
-import { decrement, getCategoryStart, getProductSucces, increment } from "../app/slice/products";
+import {
+  decrement,
+  getCategoryStart,
+  getProductSucces,
+  getSingleProductSucces,
+  increment,
+} from "../app/slice/products";
 import { AddCart } from "../utils/svgs";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
-  const { count, allProducts } = useSelector((state) => state.productCategory);
+  const { count, allProducts, singleProduct } = useSelector(
+    (state) => state.productCategory
+  );
   const [color, setColor] = useState(null);
-  const [product, setProduct] = useState({});
   const { id } = useParams();
   useEffect(() => {
     const getProduct = async () => {
-      const res = await ProductService.getSingleProduct(id)
-      const respons = await ProductService.getAllProducts()
+      const res = await ProductService.getSingleProduct(id);
+      const respons = await ProductService.getAllProducts();
+      dispatch(getCategoryStart());
       dispatch(getCategoryStart());
       try {
-        dispatch(getProductSucces(respons))
-        console.log(respons);
+        dispatch(getSingleProductSucces(res));
+        dispatch(getProductSucces(respons));
       } catch (error) {
         console.log(error);
       }
-      setProduct(res);
     };
     getProduct();
   }, []);
+
+  const addCart = async (_id) => {};
 
   return (
     <>
       <div className="grid grid-cols-1 min-[800px]:grid-cols-2  gap-20 py-32 px-10 2xl:px-72">
         <div className="flex flex-col gap-10">
-          {product?.images && product.images.length > 0 && (
+          {singleProduct?.images && singleProduct.images.length > 0 && (
             <img
-              src={product.images[0].url}
+              src={singleProduct.images[0].url}
               alt=""
               className="object-contain rounded-md"
             />
           )}
           <div className="h-[100px]">
-            {product?.images?.map((img, index) => (
+            {singleProduct?.images?.map((img, index) => (
               <img
                 key={index}
                 src={img.url}
@@ -59,16 +68,16 @@ const ProductDetails = () => {
               <div className="text-[#8b8e99] text-[13px]">
                 <p className="flex items-center gap-1 cursor-pointer">
                   <HiMiniStar className="text-[#F5A623] text-[14px]" />{" "}
-                  {product?.totalrating === 0
+                  {singleProduct?.totalrating === 0
                     ? "0.0 Baholar hali yoʻq"
-                    : product?.totalrating}
+                    : singleProduct?.totalrating}
                 </p>
               </div>
               <div className="text-[#8b8e99] text-[13px]">
                 <p>
-                  {product?.sold === 0
+                  {singleProduct?.sold === 0
                     ? "Buyurtmalar yo'q"
-                    : `${product?.sold} buyurtma`}
+                    : `${singleProduct?.sold} buyurtma`}
                 </p>
               </div>
             </div>
@@ -81,17 +90,17 @@ const ProductDetails = () => {
           </div>
           <div className="flex flex-col gap-3">
             <div>
-              <h1 className="product-heading">{product?.title}</h1>
+              <h1 className="product-heading">{singleProduct?.title}</h1>
             </div>
             <div className="">
               <div className="flex items-center gap-10">
                 <div>Brend:</div>
                 <div>
                   <a
-                    href={`brands/${product?.brand}`}
+                    href={`brands/${singleProduct?.brand}`}
                     className="hover:decoration-dashed"
                   >
-                    {product?.brand}
+                    {singleProduct?.brand}
                   </a>
                 </div>
               </div>
@@ -110,7 +119,7 @@ const ProductDetails = () => {
           </div>
           <div className="">
             <p>
-              {product?.category} o'lchami:{" "}
+              {singleProduct?.category} o'lchami:{" "}
               <span className="font-bold">25(42-44)</span>
             </p>
           </div>
@@ -131,11 +140,11 @@ const ProductDetails = () => {
                 <button
                   onClick={() => dispatch(increment())}
                   className={`${
-                    count === product?.quantity
+                    count === singleProduct?.quantity
                       ? "cursor-not-allowed opacity-50"
                       : ""
                   }`}
-                  disabled={count === product?.quantity}
+                  disabled={count === singleProduct?.quantity}
                 >
                   <GoPlus />
                 </button>
@@ -146,20 +155,23 @@ const ProductDetails = () => {
             <p>Narx:</p>
             <h1 className="section-heading">
               $
-              {product?.price == count
-                ? product?.price
-                : product?.price * count}
+              {singleProduct?.price == count
+                ? singleProduct?.price
+                : singleProduct?.price * count}
             </h1>
           </div>
           <div className="flex flex-col gap-2">
             <p className="mr-10">Mahsulot haqida qisqacha:</p>
             <div
-              dangerouslySetInnerHTML={{ __html: product?.description }}
+              dangerouslySetInnerHTML={{ __html: singleProduct?.description }}
               className="list-disc"
             />
           </div>
           <div>
-            <button className="px-10 text-xl button bg-purple-600 hover:bg-primary/85 text-[#fff]">
+            <button
+              className="px-10 text-xl button bg-purple-600 hover:bg-primary/85 text-[#fff]"
+              onClick={(singleProduct) => addCart(singleProduct._id)}
+            >
               Savatga qo'shish
             </button>
           </div>

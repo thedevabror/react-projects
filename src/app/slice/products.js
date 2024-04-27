@@ -7,6 +7,8 @@ const initialState = {
   productCategoriesFailur: false,
   allProducts: [],
   allProductsFailur: false,
+  singleProduct: {},
+  singleProductFailur: false
 };
 
 export const productAndcategoriSlice = createSlice({
@@ -26,12 +28,10 @@ export const productAndcategoriSlice = createSlice({
       state.isLoading = false;
       state.productCategoriesFailur = true;
     },
-    // getProductStart: (state) => {
-    //   state.isLoading = true;
-    //   state.allProductsFailur = false;
-    // },
+    getProductStart: (state) => {
+      state.allProductsFailur = false;
+    },
     getProductSucces: (state, action) => {
-      state.isLoading = false;
       state.allProducts = action.payload;
       state.allProductsFailur = false;
     },
@@ -39,11 +39,18 @@ export const productAndcategoriSlice = createSlice({
       state.isLoading = false;
       state.allProductsFailur = true;
     },
+    getSingleProductStart: (state) => {
+      state.isLoading = true;
+    },
+    getSingleProductSucces: (state, action) => {
+      state.isLoading = false;
+      state.singleProduct = action.payload
+    },
+    getSingleProductSuccesFailur: (state) => {
+      state.singleProductFailur = true
+    },
     increment: (state) => {
       state.count += 1;
-    },
-    incrementInp: (state, action) => {
-      state.count = action.payload;
     },
     decrement: (state) => {
       state.count -= 1;
@@ -55,12 +62,14 @@ export const {
   getCategoryStart,
   getCategorySucces,
   getCategoryFailur,
-  // getProductStart,
+  getProductStart,
   getProductSucces,
   getProductFailur,
   increment,
   decrement,
-  incrementInp,
+  getSingleProductStart,
+  getSingleProductSucces,
+  getSingleProductSuccesFailur
 } = productAndcategoriSlice.actions;
 
 export default productAndcategoriSlice.reducer;

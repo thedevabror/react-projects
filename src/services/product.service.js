@@ -17,7 +17,7 @@ const ProductService = {
     return data;
   },
   async getSingleCategory(id) {
-    const { data } = await axios.put(`${base_url}category/${id}`);
+    const { data } = await axios.get(`${base_url}category/${id}`);
     return data;
   },
 

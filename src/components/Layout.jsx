@@ -1,11 +1,13 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { Footer, Header } from ".";
+import { NavbarWithMegaMenu } from "./Nav";
 
 const Layout = () => {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
+      <NavbarWithMegaMenu />
       <Outlet />
       <Footer />
     </div>

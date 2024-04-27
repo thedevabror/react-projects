@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { About, Home, Login, NotFound, Signup } from "./pages";
 import { Layout } from "./components";
 import ProductDetails from "./components/ProductDetails";
+import SingleCategory from "./components/SingleCategory";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="products/:id" element={<ProductDetails />} />
+          <Route path="category/:id" element={<SingleCategory />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

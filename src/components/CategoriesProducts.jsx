@@ -14,6 +14,7 @@ import {
 } from "../app/slice/products";
 import { Link } from "react-router-dom";
 import LoadingProduct from "../utils/LoadingProduct";
+import ProductService from "../services/product.service";
 
 const CategoriesProducts = () => {
   const { allProducts } = useSelector((state) => state.productCategory);
@@ -59,12 +60,13 @@ const CategoriesProducts = () => {
   useEffect(() => {
     const getCategories = async () => {
       const response = await axios.get(`${base_url}category`);
-      const res = await axios.get(`${base_url}product`);
+      // const res = await axios.get(`${base_url}product`);
+      const res = await ProductService.getAllProducts()
       dispatch(getCategoryStart());
       try {
         setTimeout(() => {
           dispatch(getCategorySucces(response.data));
-          dispatch(getProductSucces(res.data));
+          dispatch(getProductSucces(res));
         }, 5555);
         console.log(res);
       } catch (error) {

@@ -6,11 +6,9 @@ import { decrement, increment } from "../app/slice/products";
 import { GoPlus } from "react-icons/go";
 import { TbMinus } from "react-icons/tb";
 import AddCoupon from "../components/AddCoupon";
-import ProductService from "../services/product.service";
 
 const Cart = () => {
   const { userCart } = useSelector((state) => state.auth);
-  const [productPrice, setProductPrice] = useState();
   const [open, setOpen] = useState(false);
   const deliveryPrice = 3;
 
@@ -27,20 +25,6 @@ const Cart = () => {
     };
     getCart();
   }, []);
-
-  const addProductQu = async (product) => {
-    const { price } = await ProductService.getSingleProduct(product);
-    dispatch(increment());
-    setProductPrice(price == count ? price : price * count);
-    // setTotalPriceProducts
-  };
-
-  const removeProductQu = () => {
-    setProductPrice(
-      productPrice == count ? productPrice : (productPrice -= count)
-    );
-    dispatch(decrement());
-  };
 
   return (
     <div className="mx-auto max-w-screen-2xl px-4 py-2 min-h-[80vh]">
@@ -89,7 +73,7 @@ const Cart = () => {
                 <div className="flex items-center gap-5">
                   <div className="max-w-[120px] py-2 mt-1 border flex items-center rounded px-1 justify-center gap-7">
                     <button
-                      onClick={() => removeProductQu()}
+                      onClick={() => dispatch(decrement())}
                       className={`${
                         count === 1 ? "cursor-not-allowed opacity-50" : ""
                       }`}
@@ -99,7 +83,7 @@ const Cart = () => {
                     </button>
                     {count}
                     <button
-                      onClick={() => addProductQu(item.product._id)}
+                      onClick={() => dispatch(increment())}
                       className={`${
                         count === item?.product?.quantity
                           ? "cursor-not-allowed opacity-50"
@@ -112,10 +96,10 @@ const Cart = () => {
                   </div>
                   <div className="w-[80px] text-end">
                     <h1 className="product-heading">
-                      ${productPrice}
-                      {/* {item?.product?.price == count
+                      $
+                      {item?.product?.price == count
                         ? item?.product?.price
-                        : item?.product?.price * count} */}
+                        : item?.product?.price * count}
                     </h1>
                   </div>
                 </div>

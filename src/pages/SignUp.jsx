@@ -44,7 +44,7 @@ const SignUp = () => {
     console.log(data);
   };
   return (
-    <section className="bg-gradient-to-r from-red-50 to-zinc-300">
+    <section className="bg-primary/5">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
           href="/"

@@ -2,17 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCartStart, addCartSuccess } from "../app/slice/auth";
 import AuthService from "../services/auth.service";
-import { decrement, increment } from "../app/slice/products";
-import { GoPlus } from "react-icons/go";
-import { TbMinus } from "react-icons/tb";
-import AddCoupon from "../components/AddCoupon";
+// import { decrement, increment } from "../app/slice/products";
+// import { GoPlus } from "react-icons/go";
+// import { TbMinus } from "react-icons/tb";
+import { Button } from "@material-tailwind/react";
+import { MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
+// import AddCoupon from "../components/AddCoupon";
 
 const Cart = () => {
   const { userCart } = useSelector((state) => state.auth);
-  const [open, setOpen] = useState(false);
+  //   const [open, setOpen] = useState(false);
   const deliveryPrice = 3;
 
-  const toggleOpen = () => setOpen((cur) => !cur);
+  //   const toggleOpen = () => setOpen((cur) => !cur);
   const { count } = useSelector((state) => state.productCategory);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,6 +29,10 @@ const Cart = () => {
     getCart();
   }, []);
 
+  const handleDeleteProduct = (product) => {
+    console.log(product);
+  }
+
   return (
     <div className="mx-auto max-w-screen-2xl px-4 py-2 min-h-[80vh]">
       <div className="text-center">
@@ -34,8 +41,8 @@ const Cart = () => {
       <div className="hidden items-center justify-between px-2 lg:flex">
         <h1>Maxsulotlar</h1>
         <div className="flex items-center gap-20">
-          <h1>Soni</h1>
-          <h1>Narxi</h1>
+          {/* <h1>Narxi</h1> */}
+          <h1></h1>
         </div>
       </div>
       <hr />
@@ -59,9 +66,9 @@ const Cart = () => {
                   />
                 </div>
                 <div className="flex flex-col gap-2 product-details">
-                  <h1 className="font-bold text-primary text-xl">
+                  <Link to={`/products/${item?.product?._id}`} className="font-bold text-primary text-xl">
                     {item?.product?.title}
-                  </h1>
+                  </Link>
 
                   <p className="font-medium uppercase">
                     {item?.product?.brand}
@@ -71,7 +78,7 @@ const Cart = () => {
               </div>
               <div className="actions">
                 <div className="flex items-center gap-5">
-                  <div className="max-w-[120px] py-2 mt-1 border flex items-center rounded px-1 justify-center gap-7">
+                  {/* <div className="max-w-[120px] py-2 mt-1 border flex items-center rounded px-1 justify-center gap-7">
                     <button
                       onClick={() => dispatch(decrement())}
                       className={`${
@@ -93,7 +100,7 @@ const Cart = () => {
                     >
                       <GoPlus />
                     </button>
-                  </div>
+                  </div> */}
                   <div className="w-[80px] text-end">
                     <h1 className="product-heading">
                       $
@@ -101,6 +108,11 @@ const Cart = () => {
                         ? item?.product?.price
                         : item?.product?.price * count}
                     </h1>
+                  </div>
+                  <div className="px-1 max-w-[120px] py-2">
+                    <Button className="bg-transparent rounded-full p-2 hover:shadow-none shadow-none" onClick={() => handleDeleteProduct(item?.product?._id)}>
+                        <MdDelete className="text-[24px] text-primary " />
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -135,7 +147,7 @@ const Cart = () => {
         </div>
       </div>
       <div class="flex items-center flex-col sm:flex-row justify-center gap-3 mt-8">
-        <button
+        {/* <button
           class="rounded-lg py-2 w-full max-w-[170px] text-primary  flex items-center bg-indigo-50 justify-center transition-all duration-500 hover:bg-primary hover:text-white"
           onClick={toggleOpen}
         >
@@ -157,7 +169,7 @@ const Cart = () => {
               strokeLinejoin="round"
             />
           </svg>
-        </button>
+        </button> */}
         <button class="rounded-lg w-full max-w-[150px] py-2 text-center justify-center items-center bg-primary font-semibold text-sm text-white flex transition-all duration-500 hover:bg-primary/85">
           <span class="px-2 font-semibold text-sm leading-8 ">
             To'lov qilish
@@ -180,7 +192,7 @@ const Cart = () => {
           </svg>
         </button>
       </div>
-      <AddCoupon open={open} />
+      {/* <AddCoupon open={open} /> */}
     </div>
   );
 };

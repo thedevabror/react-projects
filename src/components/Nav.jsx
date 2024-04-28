@@ -11,7 +11,6 @@ import {
   MenuHandler,
   MenuList,
   MenuItem,
-  useSelect,
   Input,
 } from "@material-tailwind/react";
 import {
@@ -19,84 +18,18 @@ import {
   Bars3Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import {
-  Bars4Icon,
-  GlobeAmericasIcon,
-  NewspaperIcon,
-  PhoneIcon,
-  RectangleGroupIcon,
-  SquaresPlusIcon,
-  SunIcon,
-  TagIcon,
-  UserGroupIcon,
-} from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { BasicInput } from "./input";
-
-// const navListMenuItems = [
-//     // {
-//     //   title: "Products",
-//     //   description: "Find the perfect solution for your needs.",
-//     //   icon: SquaresPlusIcon,
-//     // },
-//     // {
-//     //   title: "About Us",
-//     //   description: "Meet and learn about our dedication",
-//     //   icon: UserGroupIcon,
-//     // },
-//     // {
-//     //   title: "Blog",
-//     //   description: "Find the perfect solution for your needs.",
-//     //   icon: Bars4Icon,
-//     // },
-//     // {
-//     //   title: "Services",
-//     //   description: "Learn how we can help you achieve your goals.",
-//     //   icon: SunIcon,
-//     // },
-//     // {
-//     //   title: "Support",
-//     //   description: "Reach out to us for assistance or inquiries",
-//     //   icon: GlobeAmericasIcon,
-//     // },
-//     // {
-//     //   title: "Contact",
-//     //   description: "Find the perfect solution for your needs.",
-//     //   icon: PhoneIcon,
-//     // },
-//     // {
-//     //   title: "News",
-//     //   description: "Read insightful articles, tips, and expert opinions.",
-//     //   icon: NewspaperIcon,
-//     // },
-//     // {
-//     //   title: "Products",
-//     //   description: "Find the perfect solution for your needs.",
-//     //   icon: RectangleGroupIcon,
-//     // },
-//     // {
-//     //   title: "Special Offers",
-//     //   description: "Explore limited-time deals and bundles",
-//     //   icon: TagIcon,
-//     // },
-// ];
 
 let navListMenuItems = [];
 
 function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  
   const renderItems = navListMenuItems.map(({ title, _id }) => (
     <Link to={`/category/${_id}`} key={_id}>
       <MenuItem className="flex items-center gap-3 rounded-lg">
-        {/* <div className="flex items-center justify-center rounded-lg !bg-blue-gray-50 p-2 ">
-            {" "}
-            {React.createElement(icon, {
-              strokeWidth: 2,
-              className: "h-6 text-gray-900 w-6",
-            })}
-          </div> */}
         <div>
           <Typography
             variant="h6"
@@ -122,7 +55,7 @@ function NavListMenu() {
         <MenuHandler>
           <Typography as="div" variant="small" className="font-medium">
             <ListItem
-              className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900"
+              className="flex items-center gap-2 py-3 pr-4 font-medium text-gray-900"
               selected={isMenuOpen || isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
@@ -156,22 +89,21 @@ function NavListMenu() {
 }
 
 function NavList() {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const value = formData.get("search")
+    console.log(value)
+  }
   return (
-    <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
-      {/* <Typography
-        as="input"
-        // href="#"
-        variant="small"
-        color="blue-gray"
-        className="font-medium"
-    > */}
+    <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 items-center">
       <NavListMenu />
-      <div className="relative flex w-full max-w-[24rem]">
+      <form className="relative flex w-full max-w-[24rem]" onSubmit={(e) => handleSubmit(e)}>
         <Input
-          type="email"
+          type="text"
           label="Qidirish"
-          // value={email}
-          // onChange={onChange}
+          color="purple"
+          name="search"
           className="pr-20"
           containerProps={{
             className: "min-w-0",
@@ -179,13 +111,12 @@ function NavList() {
         />
         <Button
           size="sm"
-          // color={email ? "gray" : "blue-gray"}
-          // disabled={!email}
-          className="!absolute right-1 top-1 rounded"
+          className="!absolute right-1 top-1 rounded bg-primary"
+          type="submit"
         >
           qidirish
         </Button>
-      </div>
+      </form>
     </List>
   );
 }
@@ -219,11 +150,8 @@ export function NavbarWithMegaMenu() {
           <NavList />
         </div>
         <div className="hidden gap-2 lg:flex">
-          <Button variant="text" size="sm" color="blue-gray">
+          <Button size="md" className="bg-primary">
             <Link to={"/login"}>Kirish</Link>
-          </Button>
-          <Button variant="gradient" size="sm">
-            <Link to={"/signup"}>Ro'yxatdan o'tish</Link>
           </Button>
         </div>
         <IconButton
@@ -242,15 +170,11 @@ export function NavbarWithMegaMenu() {
       <Collapse open={openNav}>
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
+          <Button size="md" className="bg-primary" fullWidth>
             <Link to={"/login"}>Kirish</Link>
-          </Button>
-          <Button variant="gradient" size="sm" fullWidth>
-            <Link to={"/signup"}>Ro'yxatdan o'tish</Link>
           </Button>
         </div>
       </Collapse>
-      {/* <hr /> */}
     </Navbar>
   );
 }

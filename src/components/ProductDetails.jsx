@@ -42,7 +42,7 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div className="grid grid-cols-1 min-[800px]:grid-cols-2  gap-20 py-32 px-10 2xl:px-72">
+      <div className="grid grid-cols-1 lg:grid-cols-2  gap-20 py-32 px-10 2xl:px-72">
         <div className="flex flex-col gap-10">
           {singleProduct?.images && singleProduct.images.length > 0 && (
             <img

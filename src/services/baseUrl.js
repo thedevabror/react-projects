@@ -1,1 +1,1 @@
-export const base_url = "https://e-shop-backend-kappa.vercel.app/api/";
+export const base_url = "http://localhost:5000/api/";

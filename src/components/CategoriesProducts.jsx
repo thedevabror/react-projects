@@ -1,20 +1,12 @@
-import axios from "axios";
-import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { base_url } from "../services/baseUrl";
+import React, { useRef } from "react";
+import { useSelector } from "react-redux";
 import { MdArrowForwardIos } from "react-icons/md";
 import Slider from "react-slick";
 import { AddCart } from "../utils/svgs";
 import { HiMiniStar } from "react-icons/hi2";
 import { IoMdHeartEmpty } from "react-icons/io";
-import {
-  getCategoryStart,
-  getCategorySucces,
-  getProductSucces,
-} from "../app/slice/products";
 import { Link } from "react-router-dom";
 import LoadingProduct from "../utils/LoadingProduct";
-import ProductService from "../services/product.service";
 
 const CategoriesProducts = () => {
   const { allProducts } = useSelector((state) => state.productCategory);
@@ -56,24 +48,6 @@ const CategoriesProducts = () => {
   };
   const sliderRef = useRef(null);
   const { productCategories } = useSelector((state) => state.productCategory);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const getCategories = async () => {
-      const response = await ProductService.getCategories();
-      const res = await ProductService.getAllProducts()
-      dispatch(getCategoryStart());
-      try {
-        setTimeout(() => {
-          dispatch(getCategorySucces(response));
-          dispatch(getProductSucces(res));
-        }, 5555);
-        console.log(res);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getCategories();
-  }, [dispatch]);
 
   const nextSlide = () => {
     sliderRef.current.slickNext();

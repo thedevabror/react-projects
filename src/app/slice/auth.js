@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoading: false,
+  logined: false,
   createUserStart: false,
   createUserSucces: false,
   createUserFailur: false,
@@ -9,6 +10,8 @@ const initialState = {
   loginUserSucces: false,
   loginUserFailur: false,
   userData: {},
+  userCart: {},
+  userCartError: false,
   error: null,
 };
 
@@ -18,6 +21,7 @@ export const authSlice = createSlice({
   reducers: {
     signUserStart: (state) => {
       state.isLoading = true;
+      state.logined = false;
       state.createUserStart = false;
     },
     signUserSuccess: (state, action) => {
@@ -25,15 +29,18 @@ export const authSlice = createSlice({
       state.createUserSucces = true;
       state.createUserFailur = false;
       state.userData = action.payload;
-      localStorage.setItem("user", action.payload);
+      state.logined = true;
+      localStorage.setItem("token", action.payload);
     },
     signUserFailure: (state, action) => {
       state.isLoading = false;
+      state.logined = false;
       state.createUserFailur = true;
       state.error = action.payload;
     },
     logInUserStart: (state) => {
       state.isLoading = true;
+      state.logined = false;
       state.loginUserStart = false;
     },
     logInUserSuccess: (state, action) => {
@@ -41,12 +48,25 @@ export const authSlice = createSlice({
       state.loginUserSucces = true;
       state.loginUserFailur = false;
       state.userData = action.payload;
-      localStorage.setItem("user", action.payload.token);
+      state.logined = true;
+      localStorage.setItem("token", action.payload.token);
     },
     logInUserFailure: (state, action) => {
       state.isLoading = false;
+      state.logined = false;
       state.loginUserFailur = true;
       state.error = action.payload;
+    },
+    addCartStart: (state) => {
+      state.isLoading = true;
+    },
+    addCartSuccess: (state, action) => {
+      state.isLoading = false;
+      state.userCart = action.payload;
+    },
+    addCartFailur: (state) => {
+      state.isLoading = false;
+      state.userCartError = true;
     },
   },
 });
@@ -58,5 +78,8 @@ export const {
   logInUserStart,
   logInUserSuccess,
   logInUserFailure,
+  addCartStart,
+  addCartSuccess,
+  addCartFailur
 } = authSlice.actions;
 export default authSlice.reducer;

@@ -27,11 +27,11 @@ const AuthService = {
     return data;
   },
   async userCartAdd(product) {
-    const { data } = await axios.post(`${base_url}user/cart`, config, product);
+    const { data } = await axios.post(`${base_url}user/cart`, product, config);
     return data;
   },
-  async userCart(_id) {
-    const { data } = await axios.get(`${base_url}user/cart`, config, _id);
+  async userCart() {
+    const { data } = await axios.get(`${base_url}user/cart`, config);
     return data;
   },
   async applyCoupon(coupon) {

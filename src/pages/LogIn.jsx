@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logInUserFailure, logInUserStart, logInUserSuccess } from "../app/slice/auth";
 import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
+import { ToastContainer, toast } from "react-toastify";
 
 const LogIn = () => {
   const { isLoading } = useSelector((state) => state.auth);
@@ -22,10 +23,12 @@ const LogIn = () => {
     try {
       const response = await AuthService.userLogin(user)
       dispatch(logInUserSuccess(response))
+      toast.success("Success!")
       console.log(response)
-      navigate('/panel')
+      // navigate('/panel')
     } catch (error) {
       dispatch(logInUserFailure(error))
+      toast.error("Success!")
     }
     
   };
@@ -153,6 +156,7 @@ const LogIn = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 };

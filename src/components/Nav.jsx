@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Collapse,
@@ -19,14 +19,20 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Cart } from "../utils/svgs";
+// import Dwider from "./Dwider";
+import AuthService from "../services/auth.service";
+import { addCartStart, addCartSuccess } from "../app/slice/auth";
+import ProductService from "../services/product.service";
+import { getCategoryStart, getCategorySucces, getProductSucces } from "../app/slice/products";
 
 let navListMenuItems = [];
 
 function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  
+
   const renderItems = navListMenuItems.map(({ title, _id }) => (
     <Link to={`/category/${_id}`} key={_id}>
       <MenuItem className="flex items-center gap-3 rounded-lg">
@@ -90,15 +96,18 @@ function NavListMenu() {
 
 function NavList() {
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const value = formData.get("search")
-    console.log(value)
-  }
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const value = formData.get("search");
+    console.log(value);
+  };
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 items-center">
       <NavListMenu />
-      <form className="relative flex w-full max-w-[24rem]" onSubmit={(e) => handleSubmit(e)}>
+      <form
+        className="relative flex w-full max-w-[24rem]"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <Input
           type="text"
           label="Qidirish"
@@ -124,8 +133,22 @@ function NavList() {
 export function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = React.useState(false);
   const { productCategories } = useSelector((state) => state.productCategory);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const getCategories = async () => {
+      const response = await ProductService.getCategories();
+      const res = await ProductService.getAllProducts()
+      dispatch(getCategoryStart());
+      try {
+        dispatch(getCategorySucces(response));
+        dispatch(getProductSucces(res));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCategories();
+  }, [dispatch]);
 
-  console.log(productCategories);
   navListMenuItems = productCategories;
 
   React.useEffect(() => {
@@ -136,45 +159,73 @@ export function NavbarWithMegaMenu() {
   }, []);
 
   return (
-    <Navbar className="mx-auto max-w-screen-2xl px-4 py-2 shadow-none">
-      <div className="flex items-center justify-between text-blue-gray-900">
-        <Typography
-          as="a"
-          href="#"
-          variant="h6"
-          className="mr-4 cursor-pointer py-1.5 lg:ml-2"
-        >
-          Trendify
-        </Typography>
-        <div className="hidden lg:block w-full">
+    <>
+      <Navbar className="mx-auto max-w-screen-2xl px-4 py-2 shadow-none">
+        <div className="flex items-center justify-between text-blue-gray-900">
+          <Typography
+            as="a"
+            href="/"
+            variant="h6"
+            className="mr-4 cursor-pointer py-1.5 lg:ml-2"
+          >
+            Trendify
+          </Typography>
+          <div className="hidden lg:block w-full">
+            <NavList />
+          </div>
+          <div className="hidden gap-2 lg:flex">
+            <Link to={"/cart"}>
+              <Button
+                variant="text"
+                size="md"
+                className="flex items-center gap-3 justify-center"
+                fullWidth
+                // onClick={openDrawer}
+              >
+                <Cart /> <p>Savat</p>
+              </Button>
+            </Link>
+            <Link to={"/login"}>
+              <Button size="md" className="bg-primary" fullWidth>
+                <Link to={"/login"}>Kirish</Link>
+              </Button>
+            </Link>
+          </div>
+          <IconButton
+            variant="text"
+            color="blue-gray"
+            className="lg:hidden"
+            onClick={() => setOpenNav(!openNav)}
+          >
+            {openNav ? (
+              <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+            ) : (
+              <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+            )}
+          </IconButton>
+        </div>
+        <Collapse open={openNav}>
           <NavList />
-        </div>
-        <div className="hidden gap-2 lg:flex">
-          <Button size="md" className="bg-primary">
-            <Link to={"/login"}>Kirish</Link>
-          </Button>
-        </div>
-        <IconButton
-          variant="text"
-          color="blue-gray"
-          className="lg:hidden"
-          onClick={() => setOpenNav(!openNav)}
-        >
-          {openNav ? (
-            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
-          ) : (
-            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
-          )}
-        </IconButton>
-      </div>
-      <Collapse open={openNav}>
-        <NavList />
-        <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Button size="md" className="bg-primary" fullWidth>
-            <Link to={"/login"}>Kirish</Link>
-          </Button>
-        </div>
-      </Collapse>
-    </Navbar>
+          <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
+            <Link to={"/cart"}>
+              <Button
+                variant="text"
+                size="md"
+                className="flex items-center gap-3 justify-center"
+                fullWidth
+                // onClick={openDrawer}
+              >
+                <Cart /> <p>Savat</p>
+              </Button>
+            </Link>
+            <Link to={"/login"}>
+              <Button size="md" className="bg-primary" fullWidth>
+                <Link to={"/login"}>Kirish</Link>
+              </Button>
+            </Link>
+          </div>
+        </Collapse>
+      </Navbar>
+    </>
   );
 }

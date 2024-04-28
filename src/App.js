@@ -4,6 +4,8 @@ import { About, Home, Login, NotFound, Signup } from "./pages";
 import { Layout } from "./components";
 import ProductDetails from "./components/ProductDetails";
 import SingleCategory from "./components/SingleCategory";
+import 'react-toastify/dist/ReactToastify.css';
+import Cart from "./pages/Cart";
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="cart" element={<Cart />} />
           <Route path="products/:id" element={<ProductDetails />} />
           <Route path="category/:id" element={<SingleCategory />} />
           <Route path="*" element={<NotFound />} />

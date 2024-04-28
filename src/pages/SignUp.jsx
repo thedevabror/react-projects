@@ -8,6 +8,7 @@ import {
   signUserSuccess,
 } from "../app/slice/auth";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const SignUp = () => {
   const { isLoading } = useSelector((state) => state.auth);
@@ -34,8 +35,10 @@ const SignUp = () => {
       dispatch(signUserSuccess(respons.data));
       console.log(respons);
       console.log(respons.data);
+      toast.success("Success!")
     } catch (error) {
       console.log(error);
+      toast.error("Error!")
       dispatch(signUserFailure(error));
     }
     console.log(data);
@@ -186,6 +189,7 @@ const SignUp = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 };

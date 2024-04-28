@@ -14,6 +14,9 @@ import {
   increment,
 } from "../app/slice/products";
 import { AddCart } from "../utils/svgs";
+import { addCartStart } from "../app/slice/auth";
+import AuthService from "../services/auth.service";
+import { ToastContainer, toast } from "react-toastify";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -38,7 +41,36 @@ const ProductDetails = () => {
     getProduct();
   }, []);
 
-  const addCart = async (_id) => {};
+  const addCart = async (singleProduct) => {
+    console.log(singleProduct);
+    const data = {
+      cart: [
+        {
+          _id: singleProduct,
+          count: count,
+          color: "red",
+        },
+      ],
+    };
+    dispatch(addCartStart);
+    try {
+      const response = await AuthService.userCartAdd(data);
+      toast.success("Maxsulot qo'shildi");
+      console.log(response);
+    } catch (error) {
+      toast.error(
+        `Xatolik, ${
+          error?.response?.data?.message ==
+          "There is no token attached to header"
+            ? "Oldin hisobingizga kirishingiz kerak"
+            : "serverda xatolik"
+        }`
+      );
+      console.log(error);
+    }
+  };
+
+  console.log(singleProduct._id);
 
   return (
     <>
@@ -170,13 +202,14 @@ const ProductDetails = () => {
           <div>
             <button
               className="px-10 text-xl button bg-purple-600 hover:bg-primary/85 text-[#fff]"
-              onClick={(singleProduct) => addCart(singleProduct._id)}
+              onClick={() => addCart(singleProduct._id)}
             >
               Savatga qo'shish
             </button>
           </div>
         </div>
       </div>{" "}
+      <ToastContainer autoClose={1000} />
       <div className="py-10 px-10 2xl:px-72">
         <h1 className="section-heading">O'xshash maxsulotlar</h1>
         <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 lg:gap-5  p-[15px]">

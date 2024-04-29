@@ -57,14 +57,14 @@ const Header = () => {
                 savat
               </button>
               <Link
-                to={"/login"}
+                to={"/auth/login"}
                 className="px-7 py-3 text-base font-medium text-dark hover:text-primary dark:text-white"
               >
                 Kirish
               </Link>
 
               <Link
-                to={"/signup"}
+                to={"/auth/register"}
                 className="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90"
               >
                 Ro'yxatdan o'tish

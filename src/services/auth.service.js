@@ -26,6 +26,10 @@ const AuthService = {
     const data = axios.get(`${base_url}user/${id}`, config);
     return data;
   },
+  async addAddress(address) {
+    const data = axios.put(`${base_url}user/save-address`, {address}, config)
+    return data
+  },
   async userWishList(_id) {
     const { data } = await axios.get(`${base_url}user/wishlist`, config, _id);
     return data;

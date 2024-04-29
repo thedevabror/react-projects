@@ -15,7 +15,7 @@ const AccountDetails = () => {
       try {
         const response = await AuthService.getUser(id);
         setUserData(response.data);
-        console.log(userData.getSingleUser);
+        console.log(userData?.getSingleUser);
       } catch (error) {
         console.log(error);
       }
@@ -63,7 +63,9 @@ const AccountDetails = () => {
                   </Button>
                 </div>
               ) : (
-                <>tets</>
+                <>
+                    <h1>Manzilingiz: {userData?.getSingleUser?.address[0].address}</h1>
+                </>
               )}
             </div>
           </div>

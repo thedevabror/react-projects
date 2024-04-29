@@ -25,7 +25,8 @@ const LogIn = () => {
       dispatch(logInUserSuccess(response))
       toast.success("Success!")
       console.log(response)
-      // navigate('/panel')
+      navigate('/')
+      window.location.reload()
     } catch (error) {
       dispatch(logInUserFailure(error))
       toast.error("Success!")
@@ -147,7 +148,7 @@ const LogIn = () => {
                 Sizda akkount yo'qmi?{" "}
                 <Link
                   className="font-medium text-primary hover:underline dark:text-primary-500"
-                  to={"/signup"}
+                  to={"/auth/register"}
                 >
                   Ro'yxatdan o'tish
                 </Link>

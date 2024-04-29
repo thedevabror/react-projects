@@ -6,11 +6,26 @@ import {
   DialogBody,
   DialogFooter,
   Input,
-  Textarea,
   Typography,
 } from "@material-tailwind/react";
+import AuthService from "../services/auth.service";
 
 export function AddAddress({handleOpen, open}) {
+    const handleAdd = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const address1 = formData.get("address")
+        const address = {
+            address: address1
+        }
+        try {
+            const response = await AuthService.addAddress(address)
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
+        console.log(address)
+    }
 
   return (
     <>
@@ -36,14 +51,13 @@ export function AddAddress({handleOpen, open}) {
             />
           </svg>
         </div>
-        <form>
+        <form onSubmit={(e) => handleAdd(e)}>
           <DialogBody>
             <div className="grid gap-6">
               <Typography className="-mb-1" color="blue-gray" variant="h6">
                 Username
               </Typography>
-              <Input label="Username"  required />
-              <Textarea label="Message" required />
+              <Input label="Address" name="address"  required />
             </div>
           </DialogBody>
           <DialogFooter className="space-x-2">

@@ -180,7 +180,7 @@ const SignUp = () => {
                 Akkountingiz bormi?{" "}
                 <Link
                   className="font-medium text-primary hover:underline dark:text-primary-500"
-                  to={"/login"}
+                  to={"/auth/login"}
                 >
                   Kirish
                 </Link>

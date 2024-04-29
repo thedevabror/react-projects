@@ -69,7 +69,6 @@ const Cart = () => {
                   <Link to={`/products/${item?.product?._id}`} className="font-bold text-primary text-xl">
                     {item?.product?.title}
                   </Link>
-
                   <p className="font-medium uppercase">
                     {item?.product?.brand}
                   </p>

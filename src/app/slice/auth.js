@@ -30,8 +30,9 @@ export const authSlice = createSlice({
       state.createUserFailur = false;
       state.userData = action.payload;
       state.logined = true;
-      localStorage.setItem("token", action.payload);
-      localStorage.setItem("logined", state.logined);
+      sessionStorage.setItem("token", action.payload);
+      sessionStorage.setItem("logined", state.logined);
+      
     },
     signUserFailure: (state, action) => {
       state.isLoading = false;
@@ -50,8 +51,8 @@ export const authSlice = createSlice({
       state.loginUserFailur = false;
       state.userData = action.payload;
       state.logined = true;
-      localStorage.setItem("token", action.payload.token);
-      localStorage.setItem("logined", state.logined);
+      sessionStorage.setItem("token", action.payload.token);
+      sessionStorage.setItem("logined", state.logined);
     },
     logInUserFailure: (state, action) => {
       state.isLoading = false;

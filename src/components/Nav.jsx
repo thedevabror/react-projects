@@ -18,6 +18,7 @@ import {
   Bars3Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { FaUserLarge } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Cart } from "../utils/svgs";
@@ -25,7 +26,11 @@ import { Cart } from "../utils/svgs";
 import AuthService from "../services/auth.service";
 import { addCartStart, addCartSuccess } from "../app/slice/auth";
 import ProductService from "../services/product.service";
-import { getCategoryStart, getCategorySucces, getProductSucces } from "../app/slice/products";
+import {
+  getCategoryStart,
+  getCategorySucces,
+  getProductSucces,
+} from "../app/slice/products";
 
 let navListMenuItems = [];
 
@@ -132,12 +137,13 @@ function NavList() {
 
 export function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = React.useState(false);
+  // const { logined } = useSelector((state) => state.auth);
   const { productCategories } = useSelector((state) => state.productCategory);
   const dispatch = useDispatch();
   useEffect(() => {
     const getCategories = async () => {
       const response = await ProductService.getCategories();
-      const res = await ProductService.getAllProducts()
+      const res = await ProductService.getAllProducts();
       dispatch(getCategoryStart());
       try {
         dispatch(getCategorySucces(response));
@@ -148,6 +154,10 @@ export function NavbarWithMegaMenu() {
     };
     getCategories();
   }, [dispatch]);
+
+  const logined = sessionStorage.getItem("logined");
+
+  console.log(logined);
 
   navListMenuItems = productCategories;
 
@@ -185,11 +195,17 @@ export function NavbarWithMegaMenu() {
                 <Cart /> <p>Savat</p>
               </Button>
             </Link>
-            <Link to={"/login"}>
-              <Button size="lg" className="bg-primary" fullWidth>
-                <Link to={"/login"}>Kirish</Link>
+            {logined == "true" ? (
+              <Button className="bg-primary text-2xl hover:shadow-none shadow-none">
+                <FaUserLarge className="" />
               </Button>
-            </Link>
+            ) : (
+              <Link to={"/login"}>
+                <Button size="lg" className="bg-primary" fullWidth>
+                  <Link to={"/login"}>Kirish</Link>
+                </Button>
+              </Link>
+            )}
           </div>
           <IconButton
             variant="text"
@@ -218,11 +234,17 @@ export function NavbarWithMegaMenu() {
                 <Cart /> <p>Savat</p>
               </Button>
             </Link>
-            <Link to={"/login"}>
-              <Button size="lg" className="bg-primary" fullWidth>
-                <Link to={"/login"}>Kirish</Link>
+            {logined == "true" ? (
+              <Button className="bg-primary text-2xl hover:shadow-none shadow-none">
+                <FaUserLarge className="" />
               </Button>
-            </Link>
+            ) : (
+              <Link to={"/login"}>
+                <Button size="lg" className="bg-primary" fullWidth>
+                  <Link to={"/login"}>Kirish</Link>
+                </Button>
+              </Link>
+            )}
           </div>
         </Collapse>
       </Navbar>

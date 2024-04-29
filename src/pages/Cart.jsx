@@ -24,6 +24,7 @@ const Cart = () => {
       try {
         const response = await AuthService.userCart();
         dispatch(addCartSuccess(response));
+        console.log(response)
       } catch (error) {}
     };
     getCart();

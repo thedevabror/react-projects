@@ -1,11 +1,8 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import { About, Home, Login, NotFound, Signup } from "./pages";
-import { Layout } from "./components";
-import ProductDetails from "./components/ProductDetails";
-import SingleCategory from "./components/SingleCategory";
-import 'react-toastify/dist/ReactToastify.css';
-import Cart from "./pages/Cart";
+import { About, Home, Login, NotFound, Signup, Cart, Account } from "./pages";
+import { Category, Layout, Product } from "./components";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -17,8 +14,9 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="products/:id" element={<ProductDetails />} />
-          <Route path="category/:id" element={<SingleCategory />} />
+          <Route path="user" element={<Account />} />
+          <Route path="products/:id" element={<Product />} />
+          <Route path="category/:id" element={<Category />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

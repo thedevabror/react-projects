@@ -156,8 +156,7 @@ export function NavbarWithMegaMenu() {
   }, [dispatch]);
 
   const logined = sessionStorage.getItem("logined");
-
-  console.log(logined);
+  const userName = sessionStorage.getItem("username");
 
   navListMenuItems = productCategories;
 
@@ -196,9 +195,12 @@ export function NavbarWithMegaMenu() {
               </Button>
             </Link>
             {logined == "true" ? (
-              <Button className="bg-primary text-2xl hover:shadow-none shadow-none">
-                <FaUserLarge className="" />
-              </Button>
+              <Link to={'/user'}>
+                <Button className="bg-primary hover:shadow-none shadow-none flex gap-2 items-center">
+                  <FaUserLarge className="text-xl" />
+                  <p>{userName}</p>
+                </Button>
+              </Link>
             ) : (
               <Link to={"/login"}>
                 <Button size="lg" className="bg-primary" fullWidth>
@@ -235,9 +237,12 @@ export function NavbarWithMegaMenu() {
               </Button>
             </Link>
             {logined == "true" ? (
-              <Button className="bg-primary text-2xl hover:shadow-none shadow-none">
-                <FaUserLarge className="" />
+              <Link to={'/user'}>
+              <Button className="bg-primary hover:shadow-none shadow-none flex gap-2 items-center">
+                <FaUserLarge className="text-xl" />
+                <p>{userName}</p>
               </Button>
+            </Link>
             ) : (
               <Link to={"/login"}>
                 <Button size="lg" className="bg-primary" fullWidth>

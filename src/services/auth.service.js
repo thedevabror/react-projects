@@ -22,6 +22,10 @@ const AuthService = {
     const { data } = axios.put(`${base_url}user/password`, config, password);
     return data;
   },
+  async getUser(id) {
+    const data = axios.get(`${base_url}user/${id}`, config);
+    return data;
+  },
   async userWishList(_id) {
     const { data } = await axios.get(`${base_url}user/wishlist`, config, _id);
     return data;
@@ -55,7 +59,11 @@ const AuthService = {
     return data;
   },
   async emptyCart(product) {
-    const { data } = await axios.delete(`${base_url}user/empty-cart`, config, product);
+    const { data } = await axios.delete(
+      `${base_url}user/empty-cart`,
+      config,
+      product
+    );
     return data;
   },
   async editUser(user) {
@@ -63,7 +71,11 @@ const AuthService = {
     return data;
   },
   async saveAddress(address) {
-    const { data } = await axios.put(`${base_url}user/save-address`, config, address);
+    const { data } = await axios.put(
+      `${base_url}user/save-address`,
+      config,
+      address
+    );
     return data;
   },
   async logOut() {

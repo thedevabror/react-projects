@@ -12,6 +12,7 @@ const initialState = {
   userData: {},
   userCart: {},
   userCartError: false,
+  userName: '',
   error: null,
 };
 
@@ -32,7 +33,8 @@ export const authSlice = createSlice({
       state.logined = true;
       sessionStorage.setItem("token", action.payload);
       sessionStorage.setItem("logined", state.logined);
-      
+      sessionStorage.setItem("username", state.userData.firstname); 
+      sessionStorage.setItem("id", state.userData._id)
     },
     signUserFailure: (state, action) => {
       state.isLoading = false;
@@ -53,6 +55,8 @@ export const authSlice = createSlice({
       state.logined = true;
       sessionStorage.setItem("token", action.payload.token);
       sessionStorage.setItem("logined", state.logined);
+      sessionStorage.setItem("username", state.userData.firstname);
+      sessionStorage.setItem("id", state.userData._id)
     },
     logInUserFailure: (state, action) => {
       state.isLoading = false;

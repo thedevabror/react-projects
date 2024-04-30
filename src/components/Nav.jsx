@@ -183,7 +183,7 @@ export function NavbarWithMegaMenu() {
             <NavList />
           </div>
           <div className="hidden gap-2 lg:flex">
-            <Link to={logined == "true" ? "/dashoard/cart" : "/cart"}>
+            <Link to={logined == "true" ? "/dashboard/cart" : "/cart"}>
               <Button
                 variant="text"
                 size="md"
@@ -225,7 +225,7 @@ export function NavbarWithMegaMenu() {
         <Collapse open={openNav}>
           <NavList />
           <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-            <Link to={logined == "true" ? "/dashoard/cart" : "/cart"}>
+            <Link to={logined == "true" ? "/dashboard/cart" : "/cart"}>
               <Button
                 variant="text"
                 size="md"

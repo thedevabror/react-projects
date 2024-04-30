@@ -7,6 +7,9 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
   const logined = sessionStorage.getItem("logined");
+  if (logined === "true") {
+    <Navigate to={"/dashboard"} />;
+  }
   return (
     <div className="transition-all duration-300">
       {/* <Routes>
@@ -36,7 +39,7 @@ function App() {
         </Route>
       </Routes> */}
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route exact  path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="cart" element={<Cart />} />
@@ -48,7 +51,14 @@ function App() {
         <Route path="/dashboard" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
-          <Route path="cart" element={<Cart />} />
+          <Route
+            path="cart"
+            element={
+              <ProtectedRoute logined={logined}>
+                <Cart />
+              </ProtectedRoute>
+            }
+          />
           <Route path="products/:id" element={<Product />} />
           <Route path="category/:id" element={<Category />} />
           <Route

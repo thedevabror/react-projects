@@ -4,12 +4,15 @@ import { Button } from "@material-tailwind/react";
 import { AddAddress } from "../components/AddAddress";
 import { MdEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { EditUser } from "../components/EditUser";
 
 const AccountDetails = () => {
   const [userData, setUserData] = useState();
   const [open, setOpen] = useState(false);
+  const [edit, setEdit] = useState(false);
 
   const handleOpen = () => setOpen(!open);
+  const handleEdit = () => setEdit(!edit);
   const user = sessionStorage.getItem("username");
   const id = sessionStorage.getItem("id");
   useEffect(() => {
@@ -30,7 +33,7 @@ const AccountDetails = () => {
       <h1 className="text-center">PROFILE</h1>
       <div className="flex flex-col gap-5">
         <h1 className="text-center font-black text-xl">
-          Xush kelibsiz, {user}
+          Xush kelibsiz, <span className="text-primary">{user}</span>
         </h1>
         <p className="text-center text-gray-500 font-light">
           Bu yerda siz o'z profilingiz ma'lumotlarini ko'rishingiz va
@@ -39,13 +42,13 @@ const AccountDetails = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 bg-gray-50 p-5 rounded-md shadow">
           <div className="grid grid-cols-1 grid-rows-2 gap-3 border rounded-md p-5 bg-white hover:shadow-lg transition duration-200">
             <div className="flex justify-between items-center">
-              <div className="border border-white rounded-full w-[45px] h-[45px] flex items-center justify-center bg-blue-50">
-                <p className="text-3xl text-primary font-bold">
+              <div className="border border-white rounded-full w-[45px] h-[45px] flex items-center justify-center bg-primary">
+                <p className="text-3xl text-white font-bold">
                   {user.slice(0, 1)}
                 </p>
               </div>
               <div className="px-1 max-w-[120px] py-2">
-                <Button className="bg-primary rounded-full p-[10px]">
+                <Button className="bg-primary rounded-full p-[10px]" onClick={handleEdit}>
                   <MdEdit className="text-[24px] text-white " />
                 </Button>
               </div>
@@ -113,7 +116,7 @@ const AccountDetails = () => {
                 Savatingizda 3 ta maxsulot bor
               </p>
               <Link to={"/cart"}>
-                <Button className="bg-primary w-[60%]">Savatni ko'rish</Button>
+                <Button className="bg-primary w-[100%] md:w-[60%] text-xs md:text-md">Savatni ko'rish</Button>
               </Link>
             </div>
           </div>
@@ -125,14 +128,15 @@ const AccountDetails = () => {
               <p className="text-sm text-gray-500">
                 Siz jami 5ta buyurtma berdingiz 
               </p>
-              <Link to={"/cart"}>
-                <Button className="bg-primary w-[60%]">Buyurtmalarni ko'rish</Button>
+              <Link to={"/user/orders"}>
+                <Button className="bg-primary w-[100%] md:w-[60%] text-xs md:text-md">Buyurtmalarni ko'rish</Button>
               </Link>
             </div>
           </div>
         </div>
       </div>
       <AddAddress handleOpen={handleOpen} open={open} />
+      <EditUser handleEdit={handleEdit} edit={edit} />
     </div>
   );
 };

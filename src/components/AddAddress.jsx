@@ -10,22 +10,24 @@ import {
 } from "@material-tailwind/react";
 import AuthService from "../services/auth.service";
 
-export function AddAddress({handleOpen, open}) {
-    const handleAdd = async (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const address1 = formData.get("address")
-        const address = {
-            address: address1
-        }
-        try {
-            const response = await AuthService.addAddress(address)
-            console.log(response)
-        } catch (error) {
-            console.log(error)
-        }
-        console.log(address)
+export function AddAddress({ handleOpen, open }) {
+  const handleAdd = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const address1 = formData.get("address");
+    const address = {
+      address: address1,
+    };
+    try {
+      const response = await AuthService.addAddress(address);
+      console.log(response);
+      handleOpen();
+      window.location.reload()
+    } catch (error) {
+      console.log(error);
     }
+    console.log(address);
+  };
 
   return (
     <>
@@ -55,17 +57,17 @@ export function AddAddress({handleOpen, open}) {
           <DialogBody>
             <div className="grid gap-6">
               <Typography className="-mb-1" color="blue-gray" variant="h6">
-                Username
+                Manzil
               </Typography>
-              <Input label="Address" name="address"  required />
+              <Input label="Address" name="address" required />
             </div>
           </DialogBody>
           <DialogFooter className="space-x-2">
             <Button variant="text" color="gray" onClick={handleOpen}>
-              cancel
+              Bekor qilish
             </Button>
             <Button className="bg-primary" color="gray" type="submit">
-              send message
+              Qo'shish
             </Button>
           </DialogFooter>
         </form>

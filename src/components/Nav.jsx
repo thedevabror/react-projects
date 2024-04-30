@@ -202,9 +202,9 @@ export function NavbarWithMegaMenu() {
                 </Button>
               </Link>
             ) : (
-              <Link to={"/auth/auth/login"}>
+              <Link to={"auth/login"}>
                 <Button size="lg" className="bg-primary" fullWidth>
-                  <Link to={"/auth/auth/login"}>Kirish</Link>
+                  <Link to={"/auth/login"}>Kirish</Link>
                 </Button>
               </Link>
             )}
@@ -244,9 +244,9 @@ export function NavbarWithMegaMenu() {
               </Button>
             </Link>
             ) : (
-              <Link to={"/auth/auth/login"}>
+              <Link to={"/auth/login"}>
                 <Button size="lg" className="bg-primary" fullWidth>
-                  <Link to={"/auth/auth/login"}>Kirish</Link>
+                  <Link to={"/auth/login"}>Kirish</Link>
                 </Button>
               </Link>
             )}

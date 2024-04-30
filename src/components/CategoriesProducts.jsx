@@ -11,7 +11,6 @@ import LoadingProduct from "../utils/LoadingProduct";
 const CategoriesProducts = () => {
   const { allProducts } = useSelector((state) => state.productCategory);
   const { isLoading } = useSelector((state) => state.productCategory);
-  console.log(isLoading);
   var settings = {
     infinite: false,
     speed: 1000,

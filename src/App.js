@@ -39,7 +39,7 @@ function App() {
         </Route>
       </Routes> */}
       <Routes>
-        <Route exact  path="/" element={<Layout />}>
+        <Route exact path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="cart" element={<Cart />} />
@@ -51,14 +51,7 @@ function App() {
         <Route path="/dashboard" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
-          <Route
-            path="cart"
-            element={
-              <ProtectedRoute logined={logined}>
-                <Cart />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="cart" element={<Cart />} />
           <Route path="products/:id" element={<Product />} />
           <Route path="category/:id" element={<Category />} />
           <Route

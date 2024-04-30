@@ -8,10 +8,8 @@ import { TbReload } from "react-icons/tb";
 
 const AdvancedProducts = () => {
   const { allProducts } = useSelector((state) => state.productCategory);
-  console.log(allProducts);
 
   const handleReload = () => {
-    // location.reload();
     window.location.reload()
   };
   return (

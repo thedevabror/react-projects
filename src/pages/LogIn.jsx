@@ -1,15 +1,18 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logInUserFailure, logInUserStart, logInUserSuccess } from "../app/slice/auth";
+import {
+  logInUserFailure,
+  logInUserStart,
+  logInUserSuccess,
+} from "../app/slice/auth";
 import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
 import { ToastContainer, toast } from "react-toastify";
 
 const LogIn = () => {
   const { isLoading } = useSelector((state) => state.auth);
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  console.log(isLoading);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -19,19 +22,16 @@ const LogIn = () => {
       email: username,
       password: password,
     };
-    dispatch(logInUserStart())
+    dispatch(logInUserStart());
     try {
-      const response = await AuthService.userLogin(user)
-      dispatch(logInUserSuccess(response))
-      toast.success("Success!")
-      console.log(response)
-      navigate('/')
-      window.location.reload()
+      const response = await AuthService.userLogin(user);
+      dispatch(logInUserSuccess(response));
+      toast.success("Success!");
+      navigate("/dashboard");
     } catch (error) {
-      dispatch(logInUserFailure(error))
-      toast.error("Success!")
+      dispatch(logInUserFailure(error));
+      toast.error("Success!");
     }
-    
   };
   return (
     <section className="bg-primary/5">
@@ -109,7 +109,7 @@ const LogIn = () => {
                   </div>
                 </div>
                 <Link
-                  to={'/forgot-password'}
+                  to={"/forgot-password"}
                   className="text-sm font-medium text-primary hover:underline dark:text-primary-500"
                 >
                   Parolni unutdingizmi?

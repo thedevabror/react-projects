@@ -183,7 +183,7 @@ export function NavbarWithMegaMenu() {
             <NavList />
           </div>
           <div className="hidden gap-2 lg:flex">
-            <Link to={"/cart"}>
+            <Link to={logined == "true" ? "/dashoard/cart" : "/cart"}>
               <Button
                 variant="text"
                 size="md"
@@ -195,7 +195,7 @@ export function NavbarWithMegaMenu() {
               </Button>
             </Link>
             {logined == "true" ? (
-              <Link to={'/user'}>
+              <Link to={'/dashboard/user'}>
                 <Button className="bg-primary hover:shadow-none shadow-none flex gap-2 items-center">
                   <FaUserLarge className="text-xl" />
                   <p>{userName}</p>
@@ -225,7 +225,7 @@ export function NavbarWithMegaMenu() {
         <Collapse open={openNav}>
           <NavList />
           <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-            <Link to={"/cart"}>
+            <Link to={logined == "true" ? "/dashoard/cart" : "/cart"}>
               <Button
                 variant="text"
                 size="md"
@@ -237,7 +237,7 @@ export function NavbarWithMegaMenu() {
               </Button>
             </Link>
             {logined == "true" ? (
-              <Link to={'/user'}>
+              <Link to={'/dashboard/user'}>
               <Button className="bg-primary hover:shadow-none shadow-none flex gap-2 items-center">
                 <FaUserLarge className="text-xl" />
                 <p>{userName}</p>

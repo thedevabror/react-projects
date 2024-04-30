@@ -7,13 +7,13 @@ import {
   signUserStart,
   signUserSuccess,
 } from "../app/slice/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 const SignUp = () => {
-  const { isLoading } = useSelector((state) => state.auth);
-  console.log(isLoading);
+  const navigate = useNavigate()
   const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.auth);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -33,15 +33,12 @@ const SignUp = () => {
     try {
       const respons = await axios.post(`${base_url}user/register`, data);
       dispatch(signUserSuccess(respons.data));
-      console.log(respons);
-      console.log(respons.data);
       toast.success("Success!")
+      navigate('/dashboard')
     } catch (error) {
-      console.log(error);
       toast.error("Error!")
       dispatch(signUserFailure(error));
     }
-    console.log(data);
   };
   return (
     <section className="bg-primary/5">

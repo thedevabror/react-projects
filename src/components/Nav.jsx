@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Navbar,
   Collapse,
@@ -23,8 +23,6 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Cart } from "../utils/svgs";
 // import Dwider from "./Dwider";
-import AuthService from "../services/auth.service";
-import { addCartStart, addCartSuccess } from "../app/slice/auth";
 import ProductService from "../services/product.service";
 import {
   getCategoryStart,
@@ -104,7 +102,6 @@ function NavList() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const value = formData.get("search");
-    console.log(value);
   };
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 items-center">
@@ -174,15 +171,15 @@ export function NavbarWithMegaMenu() {
             as="a"
             href="/"
             variant="h6"
-            className="mr-4 cursor-pointer py-1.5 lg:ml-2"
+            className="mr-4 cursor-pointer w-[40%] py-1.5 lg:ml-2"
           >
-            Trendify
+            E-STORE24
           </Typography>
           <div className="hidden lg:block w-full">
             <NavList />
           </div>
           <div className="hidden gap-2 lg:flex">
-            <Link to={logined == "true" ? "/dashboard/cart" : "/cart"}>
+            <Link to={logined === "true" ? "/dashboard/cart" : "/cart"}>
               <Button
                 variant="text"
                 size="md"
@@ -193,7 +190,7 @@ export function NavbarWithMegaMenu() {
                 <Cart /> <p>Savat</p>
               </Button>
             </Link>
-            {logined == "true" ? (
+            {logined === "true" ? (
               <Link to={'/user'}>
                 <Button className="bg-primary hover:shadow-none shadow-none flex gap-2 items-center">
                   <FaUserLarge className="text-xl" />
@@ -224,7 +221,7 @@ export function NavbarWithMegaMenu() {
         <Collapse open={openNav}>
           <NavList />
           <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-            <Link to={logined == "true" ? "/dashboard/cart" : "/cart"}>
+            <Link to={logined === "true" ? "/dashboard/cart" : "/cart"}>
               <Button
                 variant="text"
                 size="md"
@@ -235,7 +232,7 @@ export function NavbarWithMegaMenu() {
                 <Cart /> <p>Savat</p>
               </Button>
             </Link>
-            {logined == "true" ? (
+            {logined === "true" ? (
               <Link to={'/dashboard/user'}>
               <Button className="bg-primary hover:shadow-none shadow-none flex gap-2 items-center">
                 <FaUserLarge className="text-xl" />

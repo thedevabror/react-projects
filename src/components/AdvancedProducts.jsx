@@ -5,26 +5,17 @@ import { products } from "../data";
 import { AddCart } from "../utils/svgs";
 import { useSelector } from "react-redux";
 import { TbReload } from "react-icons/tb";
+import LoadingProduct from "../utils/LoadingProduct";
 
 const AdvancedProducts = () => {
-  const { allProducts } = useSelector((state) => state.productCategory);
+  const { allProducts, isLoading } = useSelector(
+    (state) => state.productCategory
+  );
 
-  const handleReload = () => {
-    window.location.reload()
-  };
   return (
     <>
-      {allProducts?.length === 0 ? (
-        <>
-          <div className="w-[90%] flex justify-center m-auto">
-            <button
-              className="text-xl p-2 border rounded-md transition-all duration-300 hover:bg-primary hover:text-[#fff] flex items-center justify-center gap-2"
-              onClick={() => handleReload()}
-            >
-              <p>Qaytadan yuklash</p> <TbReload />
-            </button>
-          </div>
-        </>
+      {isLoading ? (
+        <LoadingProduct />
       ) : (
         <>
           <h1 className="section-heading">Tavsiyalar</h1>

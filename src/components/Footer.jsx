@@ -61,7 +61,7 @@ const Footer = () => {
         </div>
         <div class="px-4 py-6 md:flex md:items-center md:justify-between">
           <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
-            © 2024 <a href="https://flowbite.com/">Trendify™</a>. All Rights
+            © 2024 <a href="https://flowbite.com/">E-STORE24™</a>. All Rights
             Reserved.
           </span>
           <div class="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">

@@ -15,18 +15,18 @@ export function EditUser({ handleEdit, edit }) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const firstname = formData.get("firstname");
-    const address = {
-      address: firstname,
+    const user = {
+      firstname: firstname,
     };
     try {
-      const response = await AuthService.addAddress(address);
+      const response = await AuthService.editUser(user);
       console.log(response);
       handleEdit();
       window.location.reload();
     } catch (error) {
       console.log(error);
     }
-    console.log(address);
+    console.log(user);
   };
 
   return (
@@ -59,11 +59,11 @@ export function EditUser({ handleEdit, edit }) {
               <Typography className="-mb-1" color="blue-gray" variant="h6">
                 Ismingiz
               </Typography>
-              <Input label="Ism" name="firstname" color="purple"  />
+              <Input label="Ism" name="firstname" color="purple" />
               <Typography className="-mb-1" color="blue-gray" variant="h6">
                 Familyangiz
               </Typography>
-              <Input label="Familiya" name="lastname" color="purple"  />
+              <Input label="Familiya" name="lastname" color="purple" />
               <Typography className="-mb-1" color="blue-gray" variant="h6">
                 Email manzilingiz
               </Typography>
@@ -71,7 +71,7 @@ export function EditUser({ handleEdit, edit }) {
               <Typography className="-mb-1" color="blue-gray" variant="h6">
                 Telefon raqamingiz
               </Typography>
-              <Input label="Raqam" name="mobile" color="purple"  />
+              <Input label="Raqam" name="mobile" color="purple" />
             </div>
           </DialogBody>
           <DialogFooter className="space-x-2">

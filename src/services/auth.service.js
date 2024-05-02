@@ -71,7 +71,7 @@ const AuthService = {
     return data;
   },
   async editUser(user) {
-    const { data } = await axios.put(`${base_url}user/edit-user`, config, user);
+    const { data } = await axios.put(`${base_url}user/edit-user`, user, config);
     return data;
   },
   async saveAddress(address) {

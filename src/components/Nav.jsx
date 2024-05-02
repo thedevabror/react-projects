@@ -137,7 +137,6 @@ function NavList() {
 
 export function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = React.useState(false);
-  // const { logined } = useSelector((state) => state.auth);
   const { productCategories } = useSelector((state) => state.productCategory);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -195,7 +194,7 @@ export function NavbarWithMegaMenu() {
               </Button>
             </Link>
             {logined == "true" ? (
-              <Link to={'/dashboard/user'}>
+              <Link to={'/user'}>
                 <Button className="bg-primary hover:shadow-none shadow-none flex gap-2 items-center">
                   <FaUserLarge className="text-xl" />
                   <p>{userName}</p>

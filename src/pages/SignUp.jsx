@@ -34,7 +34,7 @@ const SignUp = () => {
       const respons = await axios.post(`${base_url}user/register`, data);
       dispatch(signUserSuccess(respons.data));
       toast.success("Success!")
-      navigate('/dashboard')
+      navigate('/')
     } catch (error) {
       toast.error("Error!")
       dispatch(signUserFailure(error));

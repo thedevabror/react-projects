@@ -79,7 +79,7 @@ const ProductDetails = () => {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-10 px-10 2xl:px-72">
-        <div className="flex gap-5">
+        <div className="flex flex-col sm:flex-row gap-5">
           <div className="h-[100px]">
             {singleProduct?.images?.map((img, index) => (
               <img
@@ -94,7 +94,7 @@ const ProductDetails = () => {
             <img
               src={singleProduct.images[0].url}
               alt=""
-              className="w-[300px] h-[500px] rounded-md"
+              className="w-[100%] h-[100%] lg:w-[400px] md:h-[500px] rounded-md"
             />
           )}
         </div>

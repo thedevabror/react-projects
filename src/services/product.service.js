@@ -29,6 +29,10 @@ const ProductService = {
     const { data } = await axios.put(`${base_url}product/rating`, config);
     return data;
   },
+  async getColor() {
+    const { data } = await axios.get(`${base_url}color`);
+    return data
+  },
 };
 
 export default ProductService;

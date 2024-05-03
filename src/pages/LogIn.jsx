@@ -8,6 +8,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
 import { ToastContainer, toast } from "react-toastify";
+import logo from "../assets/logo.png"
 
 const LogIn = () => {
   const { isLoading } = useSelector((state) => state.auth);
@@ -41,11 +42,10 @@ const LogIn = () => {
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
           <img
-            className="w-8 h-8 mr-2"
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
+            className="w-[100px] h-[100px] mr-2"
+            src={logo}
             alt="logo"
           />
-          E-STORE24
         </a>
         <div className="w-full bg-white shadow-primary-1 rounded-lg  dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

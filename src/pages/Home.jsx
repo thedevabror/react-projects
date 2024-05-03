@@ -2,12 +2,12 @@ import React from "react";
 import Carousel from "react-material-ui-carousel";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { AProducts, Categorys, CheapProducts } from "../components";
+import { AProducts, CategoryList, Categorys, CheapProducts } from "../components";
 
 const Home = () => {
   return (
     <>
-      <section className="py-10 px-10 lg:px-72 hero">
+      <section className="py-10 px-1 lg:px-20 xl:px-72 hero">
         <div className="flex gap-10 items-center flex-col lg:flex-row slider-container">
           <Carousel className="w-[100%]">
             <img
@@ -27,6 +27,9 @@ const Home = () => {
             /> */}
           </Carousel>
         </div>
+      </section>
+      <section className="py-10 px-1 lg:px-20 xl:px-72 hero">
+        <CategoryList />
       </section>
       <section className="products py-10 px-1 xl:px-72 ">
         <AProducts />

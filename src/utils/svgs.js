@@ -84,3 +84,77 @@ export const Cart = () => (
     ></path>
   </svg>
 );
+
+export const Clothes = () => (
+  <svg
+    class="vd nd zc di ll il"
+    width="50"
+    height="50"
+    viewBox="0 0 60 60"
+    fill="none"
+    stroke="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M37.75 10C37.75 14.51 34.06 18.2 29.55 18.2C25.04 18.2 21.35 14.51 21.35 10H15.2L7 14.1V26.4H15.2V51H43.9V26.4H52.1V14.1L43.9 10H37.75Z"
+      stroke-width="2"
+      stroke-miterlimit="10"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    ></path>
+  </svg>
+);
+
+export const Bags = () => (
+  <svg
+    class="vd nd zc di ll il"
+    width="50"
+    height="50"
+    viewBox="0 0 60 60"
+    fill="none"
+    stroke="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M44 52H16C11.6 52 8 48.4 8 44V20H52V44C52 48.4 48.4 52 44 52Z"
+      stroke-width="2"
+      stroke-miterlimit="10"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    ></path>
+    <path
+      d="M40 26V18C40 12.5 35.5 8 30 8C24.5 8 20 12.5 20 18V26"
+      stroke-width="2"
+      stroke-miterlimit="10"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    ></path>
+    <path
+      d="M36 34H24V42H36V34Z"
+      stroke-width="2"
+      stroke-miterlimit="10"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    ></path>
+  </svg>
+);
+
+export const Shoes = () => (
+  <svg
+    class="vd nd zc di ll il"
+    width="50"
+    height="50"
+    viewBox="0 0 60 60"
+    fill="none"
+    stroke="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M18 32V48H12C12 48 12 40.7 12 36C12 30.1 8 27.9 8 22C8 15.2 12 12 12 12L35.1 33.3C36.9 35 39.4 36 41.9 36H46C49.3 36 52 38.7 52 42V48C52 48 50 48 42 48C34 48 23.5 32 18 32Z"
+      stroke-width="2"
+      stroke-miterlimit="10"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    ></path>
+  </svg>
+);

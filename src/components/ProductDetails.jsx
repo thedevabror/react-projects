@@ -29,10 +29,14 @@ const ProductDetails = () => {
     const getProduct = async () => {
       const res = await ProductService.getSingleProduct(id);
       const respons = await ProductService.getAllProducts();
+      const getColor = await ProductService.getColor();
+      console.log(getColor);
       dispatch(getCategoryStart());
       dispatch(getCategoryStart());
       try {
         dispatch(getSingleProductSucces(res));
+        setColor(getColor);
+        console.log(res.color);
         dispatch(getProductSucces(respons));
       } catch (error) {
         console.log(error);
@@ -74,15 +78,8 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-2  gap-20 py-32 px-10 2xl:px-72">
-        <div className="flex flex-col gap-10">
-          {singleProduct?.images && singleProduct.images.length > 0 && (
-            <img
-              src={singleProduct.images[0].url}
-              alt=""
-              className="object-contain rounded-md"
-            />
-          )}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-10 px-10 2xl:px-72">
+        <div className="flex gap-5">
           <div className="h-[100px]">
             {singleProduct?.images?.map((img, index) => (
               <img
@@ -93,9 +90,16 @@ const ProductDetails = () => {
               />
             ))}
           </div>
+          {singleProduct?.images && singleProduct.images.length > 0 && (
+            <img
+              src={singleProduct.images[0].url}
+              alt=""
+              className="w-[300px] h-[500px] rounded-md"
+            />
+          )}
         </div>
-        <div className="product-detail flex flex-col gap-10">
-          <div className="flex items-center justify-between w-[100%] mb-[6px]">
+        <div className="product-detail flex flex-col gap-5">
+          <div className="flex items-center justify-between w-[100%]">
             <div className="flex gap-5 items-center">
               <div className="text-[#8b8e99] text-[13px]">
                 <p className="flex items-center gap-1 cursor-pointer">
@@ -147,7 +151,12 @@ const ProductDetails = () => {
           <hr />
           <div className="flex items-center gap-10">
             <div>Ranglari:</div>
-            <div className={`bg-[${color}] p-5 rounded-md`}></div>
+            {color?.map((color) => {
+              console.log(color?.title)
+              return (
+                <div className={`bg-[${color?.title}] p-5 rounded-md shadow-md`}></div>
+              );
+            })}
           </div>
           <div className="">
             <p>
@@ -201,7 +210,7 @@ const ProductDetails = () => {
           </div>
           <div>
             <button
-              className="px-10 text-xl button bg-purple-600 hover:bg-primary/85 text-[#fff]"
+              className="px-10 text-xl button bg-primary hover:bg-primary/85 text-[#fff]"
               onClick={() => addCart(singleProduct._id)}
             >
               Savatga qo'shish

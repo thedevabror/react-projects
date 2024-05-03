@@ -168,9 +168,9 @@ export function NavbarWithMegaMenu() {
       <Navbar className="mx-auto max-w-screen-2xl px-4 py-2 shadow-none">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
-            as="a"
-            href="/"
+            as={"a"}
             variant="h6"
+            href="/"
             className="mr-4 cursor-pointer w-[40%] py-1.5 lg:ml-2"
           >
             E-STORE24
@@ -191,7 +191,7 @@ export function NavbarWithMegaMenu() {
               </Button>
             </Link>
             {logined === "true" ? (
-              <Link to={'/user'}>
+              <Link to={"/user"}>
                 <Button className="bg-primary hover:shadow-none shadow-none flex gap-2 items-center">
                   <FaUserLarge className="text-xl" />
                   <p>{userName}</p>
@@ -233,12 +233,12 @@ export function NavbarWithMegaMenu() {
               </Button>
             </Link>
             {logined === "true" ? (
-              <Link to={'/dashboard/user'}>
-              <Button className="bg-primary hover:shadow-none shadow-none flex gap-2 items-center">
-                <FaUserLarge className="text-xl" />
-                <p>{userName}</p>
-              </Button>
-            </Link>
+              <Link to={"/dashboard/user"}>
+                <Button className="bg-primary hover:shadow-none shadow-none flex gap-2 items-center">
+                  <FaUserLarge className="text-xl" />
+                  <p>{userName}</p>
+                </Button>
+              </Link>
             ) : (
               <Link to={"/auth/login"}>
                 <Button size="lg" className="bg-primary" fullWidth>

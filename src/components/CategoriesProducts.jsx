@@ -65,13 +65,13 @@ const CategoriesProducts = () => {
           {productCategories?.map((item) => {
             return (
               <div className="">
-                {allProducts.filter((pro) => pro.category === item.title)
+                {allProducts.filter((pro) => pro.category.name === item.name)
                   .length === 0 ? (
                   <></>
                 ) : (
                   <div className="flex items-center justify-between">
                     <Link className="flex items-center gap-2" to={item._id}>
-                      <h1 className="section-heading mb-0">{item.title.split(' ').slice(2).join(' ')}</h1>
+                      <h1 className="section-heading mb-0">{item.name}</h1>
                       <MdArrowForwardIos className="section-heading" />
                     </Link>
 
@@ -97,7 +97,7 @@ const CategoriesProducts = () => {
                   className="pt-5 flex gap-10"
                 >
                   {allProducts
-                    .filter((pro) => pro.category === item.title)
+                    .filter((pro) => pro.category.name === item.name)
                     .map((i) => (
                       <Link
                         to={`products/${i._id}`}
@@ -111,11 +111,11 @@ const CategoriesProducts = () => {
                         </div>
                         <div className="product-img overflow-hidden">
                           <img
-                            src={
-                              i.images.length !== 0
-                                ? i.images[0].url
-                                : "assets/product-2.jpg"
-                            }
+                            src={`
+                            http://localhost:5000/uploads/${i.images.length !== 0
+                                ? i.images[0].slice(8)
+                                : "assets/product-2.jpg"}
+                            `}
                             alt=""
                             className="object-contain rounded-lg hover:scale-110 transition-all duration-300"
                           />
@@ -123,17 +123,17 @@ const CategoriesProducts = () => {
                         <div className="product-details p-[10px]">
                           <div className="min-h-[70px]">
                             <h6 className="brand text-[13px] text-primary">
-                              {i.brand}
+                              {/* {i.brand} */}
                             </h6>
                             <h5 className="text-[12.8px] leading-[15.36px] font-custom">
-                              {i.title}
+                              {i.name}
                             </h5>
                           </div>
                           <div className="flex items-center gap-1">
                             <HiMiniStar className="text-[#F5A623] text-[14px]" />{" "}
-                            <p className="text-[11.2px] text-[#8b8e99]">
+                            {/* <p className="text-[11.2px] text-[#8b8e99]">
                               {i.totalrating}
-                            </p>
+                            </p> */}
                           </div>
                           <div className="flex justify-between items-center">
                             <p className="text-[14px]">${i.price}</p>

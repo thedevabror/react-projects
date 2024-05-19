@@ -36,7 +36,7 @@ function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
-  const renderItems = navListMenuItems.map(({ title, _id }) => (
+  const renderItems = navListMenuItems.map(({ name, _id }) => (
     <Link to={`/category/${_id}`} key={_id}>
       <MenuItem className="flex items-center gap-3 rounded-lg">
         <div>
@@ -45,7 +45,7 @@ function NavListMenu() {
             color="blue-gray"
             className="flex items-center text-sm font-bold"
           >
-            {title}
+            {name}
           </Typography>
         </div>
       </MenuItem>

@@ -21,18 +21,14 @@ const SignUp = () => {
     const username = formData.get("email");
     const password = formData.get("password");
     const firstname = formData.get("firstname")
-    const lastname = formData.get("lastname")
-    const mobile = formData.get("mobile")
     const data = {
+      name: firstname,
       email: username,
       password: password,
-      firstname: firstname,
-      lastname: lastname,
-      mobile: mobile
     };
     dispatch(signUserStart());
     try {
-      const respons = await axios.post(`${base_url}user/register`, data);
+      const respons = await axios.post(`${base_url}users/register`, data);
       dispatch(signUserSuccess(respons.data));
       toast.success("Success!")
       navigate('/')
@@ -80,7 +76,7 @@ const SignUp = () => {
                   required={true}
                 />
               </div>
-              <div>
+              {/* <div>
                 <label
                   htmlFor="lastname"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -95,7 +91,7 @@ const SignUp = () => {
                   placeholder="Abdukayumov"
                   required={true}
                 />
-              </div>
+              </div> */}
               <div>
                 <label
                   htmlFor="email"
@@ -112,7 +108,7 @@ const SignUp = () => {
                   required={true}
                 />
               </div>
-              <div>
+              {/* <div>
                 <label
                   htmlFor="mobile"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -127,7 +123,7 @@ const SignUp = () => {
                   placeholder="+998-00-000-00-00"
                   required={true}
                 />
-              </div>
+              </div> */}
               <div>
                 <label
                   htmlFor="password"

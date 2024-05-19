@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 const Cart = () => {
   const { userCart } = useSelector((state) => state.auth);
   const logined = sessionStorage.getItem("logined");
+  const id = sessionStorage.getItem("id");
   const deliveryPrice = 3;
 
   //   const toggleOpen = () => setOpen((cur) => !cur);
@@ -22,9 +23,10 @@ const Cart = () => {
     const getCart = async () => {
       dispatch(addCartStart());
       try {
-        const response = await AuthService.userCart();
+        const response = await AuthService.userCart(id);
         dispatch(addCartSuccess(response));
-        console.log(response);
+        // console.log(response);
+        console.log(userCart);
       } catch (error) {}
     };
     getCart();
@@ -33,6 +35,10 @@ const Cart = () => {
   const handleDeleteProduct = (product) => {
     console.log(product);
   };
+  if (!Array.isArray(userCart.cartItems)) {
+    console.error("userCart is not an array:", userCart);
+    return <div>Error: userCart is not an array.</div>;
+  }
 
   return (
     <div className="mx-auto max-w-screen-2xl px-4 py-2 min-h-[80vh]">
@@ -53,28 +59,30 @@ const Cart = () => {
           </>
         ) : (
           <>
-            {userCart?.products?.length === 0 ? (
+            {userCart?.cartItems?.products?.length === 0 ? (
               <div>
                 <h1>Savtingizda maxsulotlar yo'q ):</h1>
-                <Link to={'/dashboard'}>Xaridga o'tish</Link>
+                <Link to={"/dashboard"}>Xaridga o'tish</Link>
               </div>
             ) : (
               <>
                 <div className="py-5 m-auto max-w-md md:max-w-[100%]">
-                  {userCart?.products?.map((item, index) => {
+                  {userCart?.cartItems?.map(item => {
                     return (
                       <div
                         className="flex flex-col md:flex-row justify-between gap-4 px-2 md:gap-8"
-                        key={index}
+                        key={item.product._id}
                       >
                         <div className="flex items-center flex-col sm:flex-row gap-5">
                           <div className="product-img">
                             <img
-                              src={
-                                item?.product?.images?.length !== 0
-                                  ? item?.product?.images[0]?.url
-                                  : "assets/product-2.jpg"
-                              }
+                              src={`
+                             http://localhost:5000/uploads/${
+                               item.product.images.length !== 0
+                                 ? item.product.images[0].slice(8)
+                                 : "assets/product-2.jpg"
+                             }
+                             `}
                               alt=""
                               className="object-contain sm:w-[100px] md:w-[70px] rounded"
                             />
@@ -84,7 +92,7 @@ const Cart = () => {
                               to={`/products/${item?.product?._id}`}
                               className="font-bold text-primary text-xl"
                             >
-                              {item?.product?.title}
+                              {item?.product?.name}
                             </Link>
                             <p className="font-medium uppercase">
                               {item?.product?.brand}
@@ -122,9 +130,9 @@ const Cart = () => {
                             <div className="w-[80px] text-end">
                               <h1 className="product-heading">
                                 $
-                                {item?.product?.price == count
+                                {item?.product?.price == item.quantity
                                   ? item?.product?.price
-                                  : item?.product?.price * count}
+                                  : item?.product?.price * item.quantity}
                               </h1>
                             </div>
                             <div className="px-1 max-w-[120px] py-2">
@@ -149,7 +157,7 @@ const Cart = () => {
                       Maxsulotlar narxi
                     </p>
                     <h6 class="font-semibold text-xl leading-8 text-gray-900">
-                      ${userCart.cartTotal}
+                      ${userCart?.totalCartPrice}
                     </h6>
                   </div>
                   <div class="flex items-center justify-between w-full pb-6 border-b border-gray-200">
@@ -165,7 +173,7 @@ const Cart = () => {
                       Ummumiy xisob
                     </p>
                     <h6 class="font-manrope font-medium text-2xl leading-9 text-primary">
-                      ${userCart.cartTotal + deliveryPrice}
+                      ${userCart?.totalCartPrice + deliveryPrice}
                     </h6>
                   </div>
                 </div>

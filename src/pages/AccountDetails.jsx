@@ -20,7 +20,7 @@ const AccountDetails = () => {
       try {
         const response = await AuthService.getUser(id);
         setUserData(response.data);
-        console.log(userData?.getSingleUser);
+        console.log(userData);
       } catch (error) {
         console.log(error);
       }
@@ -55,11 +55,10 @@ const AccountDetails = () => {
             </div>
             <div className="flex flex-col gap-1">
               <h1 className="text-primary">
-                {userData?.getSingleUser?.firstname}{" "}
-                {userData?.getSingleUser?.lastname}
+                {userData?.name}{" "}
               </h1>
-              <p className="text-xs">{userData?.getSingleUser?.email}</p>
-              <p className="text-xs">{userData?.getSingleUser?.mobile}</p>
+              <p className="text-xs">{userData?.email}</p>
+              {/* <p className="text-xs">{userData?.getSingleUser?.mobile}</p> */}
             </div>
           </div>
           <div className="grid grid-cols-1 grid-rows-2 gap-3 border rounded-md p-5 bg-white hover:shadow-lg transition duration-200">
@@ -113,7 +112,7 @@ const AccountDetails = () => {
             </div>
             <div className="flex flex-col gap-3">
               <p className="text-sm text-gray-500">
-                Savatingizda 3 ta maxsulot bor
+                Savatingizda {userData?.cart?.length} ta maxsulot bor
               </p>
               <Link to={"/cart"}>
                 <Button className="bg-primary w-[100%] md:w-[60%] text-xs md:text-md">Savatni ko'rish</Button>

@@ -4,11 +4,11 @@ import { config } from "./axiosConfig";
 
 const AuthService = {
   async userRegister(user) {
-    const { data } = await axios.post(`${base_url}user/register`, user);
+    const { data } = await axios.post(`${base_url}users/register`, user);
     return data;
   },
   async userLogin(user) {
-    const { data } = await axios.post(`${base_url}user/login`, user);
+    const { data } = await axios.post(`${base_url}users/login`, user);
     return data;
   },
   async forgotPassword(user) {
@@ -23,11 +23,11 @@ const AuthService = {
     return data;
   },
   async getUser(id) {
-    const data = axios.get(`${base_url}user/${id}`, config);
+    const data = axios.get(`${base_url}users/${id}`, config);
     return data;
   },
-  async addAddress(address) {
-    const data = axios.put(`${base_url}user/save-address`, {address}, config)
+  async addAddress(address, id) {
+    const data = axios.put(`${base_url}users/address/${id}`, {address}, config)
     return data
   },
   async userWishList(_id) {
@@ -35,11 +35,11 @@ const AuthService = {
     return data;
   },
   async userCartAdd(product) {
-    const { data } = await axios.post(`${base_url}user/cart`, product, config);
+    const { data } = await axios.post(`${base_url}users/cart`, product, config);
     return data;
   },
-  async userCart() {
-    const { data } = await axios.get(`${base_url}user/cart`, config);
+  async userCart(id) {
+    const { data } = await axios.get(`${base_url}users/${id}/cart`, config);
     return data;
   },
   async applyCoupon(coupon) {

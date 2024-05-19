@@ -11,18 +11,25 @@ import {
 import AuthService from "../services/auth.service";
 
 export function AddAddress({ handleOpen, open }) {
+  const id = sessionStorage.getItem("id");
   const handleAdd = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const address1 = formData.get("address");
+    const street = formData.get("street");
+    const city = formData.get("city");
+    const state = formData.get("state");
+    const zip = formData.get("zip");
     const address = {
-      address: address1,
+      street: street,
+      city: city,
+      state: state,
+      zip: zip,
     };
     try {
-      const response = await AuthService.addAddress(address);
+      const response = await AuthService.addAddress(address, id);
       console.log(response);
       handleOpen();
-      window.location.reload()
+      // window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -57,9 +64,12 @@ export function AddAddress({ handleOpen, open }) {
           <DialogBody>
             <div className="grid gap-6">
               <Typography className="-mb-1" color="blue-gray" variant="h6">
-                Manzil
+                Manzilingiz
               </Typography>
-              <Input label="Address" name="address" required />
+              <Input label="Street" name="street" required />
+              <Input label="City" name="city" required />
+              <Input label="State" name="state" required />
+              <Input label="Zip" name="zip" required />
             </div>
           </DialogBody>
           <DialogFooter className="space-x-2">

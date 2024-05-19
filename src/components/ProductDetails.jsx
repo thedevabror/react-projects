@@ -29,13 +29,13 @@ const ProductDetails = () => {
     const getProduct = async () => {
       const res = await ProductService.getSingleProduct(id);
       const respons = await ProductService.getAllProducts();
-      const getColor = await ProductService.getColor();
-      console.log(getColor);
+      // const getColor = await ProductService.getColor();
+      // console.log(getColor);
       dispatch(getCategoryStart());
       dispatch(getCategoryStart());
       try {
         dispatch(getSingleProductSucces(res));
-        setColor(getColor);
+        // setColor(getColor);
         console.log(res.color);
         dispatch(getProductSucces(respons));
       } catch (error) {
@@ -84,7 +84,7 @@ const ProductDetails = () => {
             {singleProduct?.images?.map((img, index) => (
               <img
                 key={index}
-                src={img.url}
+                src={`http://localhost:5000/uploads/${img.slice(8)}`}
                 className="h-[100px] rounded-md"
                 alt=""
               />
@@ -92,7 +92,11 @@ const ProductDetails = () => {
           </div>
           {singleProduct?.images && singleProduct.images.length > 0 && (
             <img
-              src={singleProduct.images[0].url}
+              src={`http://localhost:5000/uploads/${
+                singleProduct.images.length !== 0
+                  ? singleProduct.images[0].slice(8)
+                  : "assets/product-2.jpg"
+              }`}
               alt=""
               className="w-[100%] h-[100%] lg:w-[400px] md:h-[500px] rounded-md"
             />
@@ -104,9 +108,10 @@ const ProductDetails = () => {
               <div className="text-[#8b8e99] text-[13px]">
                 <p className="flex items-center gap-1 cursor-pointer">
                   <HiMiniStar className="text-[#F5A623] text-[14px]" />{" "}
-                  {singleProduct?.totalrating === 0
+                  {/* {singleProduct?.totalrating === 0
                     ? "0.0 Baholar hali yoʻq"
-                    : singleProduct?.totalrating}
+                    : singleProduct?.totalrating} */}
+                    0.0 Baholar hali yoʻq
                 </p>
               </div>
               <div className="text-[#8b8e99] text-[13px]">
@@ -126,7 +131,7 @@ const ProductDetails = () => {
           </div>
           <div className="flex flex-col gap-3">
             <div>
-              <h1 className="product-heading">{singleProduct?.title}</h1>
+              <h1 className="product-heading">{singleProduct?.name}</h1>
             </div>
             <div className="">
               <div className="flex items-center gap-10">
@@ -151,16 +156,16 @@ const ProductDetails = () => {
           <hr />
           <div className="flex items-center gap-10">
             <div>Ranglari:</div>
-            {color?.map((color) => {
-              console.log(color?.title)
-              return (
-                <div className={`bg-[${color?.title}] p-5 rounded-md shadow-md`}></div>
-              );
-            })}
+            {/* {color?.map((color) => {
+              // console.log(color?.title)
+              return ( */}
+            <div className={`bg-[#000] p-5 rounded-md shadow-md`}></div>
+            {/* ); */}
+            {/* })} */}
           </div>
           <div className="">
             <p>
-              {singleProduct?.category} o'lchami:{" "}
+              {singleProduct?.category?.name} o'lchami:{" "}
               <span className="font-bold">25(42-44)</span>
             </p>
           </div>

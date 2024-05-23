@@ -28,6 +28,17 @@ const AccountDetails = () => {
     getUser();
   }, []);
 
+  const email = 'abrorkhandeveloper@gmail.com'
+
+  const handleResetPas = async () => {
+    try {
+      const response = await AuthService.forgotPassword(email)
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className="py-10 px-5 md:px-10 2xl:px-80 flex flex-col gap-5">
       <h1 className="text-center">PROFILE</h1>
@@ -76,7 +87,10 @@ const AccountDetails = () => {
               ) : (
                 <div className="flex flex-col gap-2">
                   <h1>
-                    Manzilingiz: {userData?.getSingleUser?.address[0].address}
+                    Manzilingiz: 
+                    <h1>Street: <span>{userData?.address?.street}</span></h1>
+                    <h1>City: <span>{userData?.address?.city}</span></h1>
+                    <h1>State: <span>{userData?.address?.state}</span></h1>
                   </h1>
                   <Button
                     className="bg-primary w-[70%]"
@@ -99,7 +113,7 @@ const AccountDetails = () => {
                 <p>•••• •••• •••• 1234</p>
               </div>
               <div>
-                <Button className="bg-primary">To'lovlarni boshqarish</Button>
+                <Button className="bg-primary" onClick={handleResetPas}>To'lovlarni boshqarish</Button>
               </div>
             </div>
           </div>

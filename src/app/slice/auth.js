@@ -31,7 +31,7 @@ export const authSlice = createSlice({
       state.createUserFailur = false;
       state.userData = action.payload;
       state.logined = true;
-      sessionStorage.setItem("token", action.payload);
+      sessionStorage.setItem("token", action.payload.token);
       sessionStorage.setItem("logined", state.logined);
       sessionStorage.setItem("username", state.userData.name); 
       sessionStorage.setItem("id", state.userData._id)

@@ -16,8 +16,6 @@ const Cart = () => {
   const id = sessionStorage.getItem("id");
   const deliveryPrice = 3;
 
-  //   const toggleOpen = () => setOpen((cur) => !cur);
-  const { count } = useSelector((state) => state.productCategory);
   const dispatch = useDispatch();
   useEffect(() => {
     const getCart = async () => {
@@ -32,14 +30,25 @@ const Cart = () => {
     getCart();
   }, []);
 
-  const handleDeleteProduct = (product) => {
-    console.log(product);
+  const handleDeleteProduct = async (product) => {
+    try {
+      const response = await AuthService.deleteProductCart(id, product);
+      console.log(response);
+      window.location.reload();
+    } catch (error) {}
   };
   if (!Array.isArray(userCart.cartItems)) {
     console.error("userCart is not an array:", userCart);
     return <div>Error: userCart is not an array.</div>;
   }
-
+  const handleCheckout = async () => {
+    try {
+      const response = await AuthService.chaeckOut(id)
+      console.log("Order created:", response);
+    } catch (error) {
+      console.error("Error creating order:", error);
+    }
+  };
   return (
     <div className="mx-auto max-w-screen-2xl px-4 py-2 min-h-[80vh]">
       <div className="text-center">
@@ -66,8 +75,8 @@ const Cart = () => {
               </div>
             ) : (
               <>
-                <div className="py-5 m-auto max-w-md md:max-w-[100%]">
-                  {userCart?.cartItems?.map(item => {
+                <div className="py-5 m-auto max-w-md md:max-w-[100%] flex flex-col gap-5">
+                  {userCart?.cartItems?.map((item) => {
                     return (
                       <div
                         className="flex flex-col md:flex-row justify-between gap-4 px-2 md:gap-8"
@@ -77,7 +86,7 @@ const Cart = () => {
                           <div className="product-img">
                             <img
                               src={`
-                             http://localhost:5000/uploads/${
+                             http://143.110.239.160:5000/uploads/${
                                item.product.images.length !== 0
                                  ? item.product.images[0].slice(8)
                                  : "assets/product-2.jpg"
@@ -201,12 +210,15 @@ const Cart = () => {
             />
           </svg>
         </button> */}
-                  <button class="rounded-lg w-full max-w-[150px] py-2 text-center justify-center items-center bg-primary font-semibold text-sm text-white flex transition-all duration-500 hover:bg-primary/85">
-                    <span class="px-2 font-semibold text-sm leading-8 ">
+                  <button
+                    className="rounded-lg w-full max-w-[150px] py-2 text-center justify-center items-center bg-primary font-semibold text-sm text-white flex transition-all duration-500 hover:bg-primary/85"
+                    onClick={handleCheckout}
+                  >
+                    <span className="px-2 font-semibold text-sm leading-8 ">
                       To'lov qilish
                     </span>
                     <svg
-                      class="ml-2"
+                      className="ml-2"
                       xmlns="http://www.w3.org/2000/svg"
                       width="23"
                       height="22"

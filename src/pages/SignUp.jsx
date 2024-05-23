@@ -1,6 +1,5 @@
-import axios from "axios";
 import React from "react";
-import { base_url } from "../services/baseUrl";
+import api from "../services/baseUrl";
 import { useDispatch, useSelector } from "react-redux";
 import {
   signUserFailure,
@@ -28,7 +27,7 @@ const SignUp = () => {
     };
     dispatch(signUserStart());
     try {
-      const respons = await axios.post(`${base_url}users/register`, data);
+      const respons = await api.post(`users/register`, data);
       dispatch(signUserSuccess(respons.data));
       toast.success("Success!")
       navigate('/')

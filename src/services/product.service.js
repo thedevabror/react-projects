@@ -1,36 +1,34 @@
-import axios from "axios";
-import { base_url } from "./baseUrl";
-import { config } from "./axiosConfig";
+import api from "./baseUrl";
 
 const ProductService = {
   async getCategories() {
-    const { data } = await axios.get(`${base_url}categories`);
+    const { data } = await api.get(`categories`);
     return data;
   },
   async getAllProducts() {
-    const { data } = await axios.get(`${base_url}products`);
+    const { data } = await api.get(`products`);
     return data;
   },
 
   async getSingleProduct(id) {
-    const { data } = await axios.get(`${base_url}products/${id}`);
+    const { data } = await api.get(`products/${id}`);
     return data;
   },
   async getSingleCategory(id) {
-    const { data } = await axios.get(`${base_url}category/${id}`);
+    const { data } = await api.get(`category/${id}`);
     return data;
   },
 
   async addToWishlist() {
-    const { data } = await axios.put(`${base_url}product/wishlist`, config);
+    const { data } = await api.put(`product/wishlist`);
     return data;
   },
   async addRating() {
-    const { data } = await axios.put(`${base_url}product/rating`, config);
+    const { data } = await api.put(`product/rating`);
     return data;
   },
   // async getColor() {
-  //   const { data } = await axios.get(`${base_url}color`);
+  //   const { data } = await api.get(`color`);
   //   return data
   // },
 };

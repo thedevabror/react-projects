@@ -25,6 +25,7 @@ const ProductDetails = () => {
   );
   const [color, setColor] = useState(null);
   const { id } = useParams();
+  const idUser = sessionStorage.getItem("id");
   useEffect(() => {
     const getProduct = async () => {
       const res = await ProductService.getSingleProduct(id);
@@ -47,18 +48,14 @@ const ProductDetails = () => {
 
   const addCart = async (singleProduct) => {
     console.log(singleProduct);
+    console.log(idUser);
     const data = {
-      cart: [
-        {
-          _id: singleProduct,
-          count: count,
-          color: "red",
-        },
-      ],
+      productId: singleProduct,
+      quantity: count,
     };
     dispatch(addCartStart);
     try {
-      const response = await AuthService.userCartAdd(data);
+      const response = await AuthService.userCartAdd(data, idUser);
       toast.success("Maxsulot qo'shildi");
       console.log(response);
     } catch (error) {
@@ -80,11 +77,11 @@ const ProductDetails = () => {
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-10 px-10 2xl:px-72">
         <div className="flex flex-col sm:flex-row gap-5">
-          <div className="h-[100px]">
+          <div className="h-[100px] grid grid-cols-1 gap-5">
             {singleProduct?.images?.map((img, index) => (
               <img
                 key={index}
-                src={`http://localhost:5000/uploads/${img.slice(8)}`}
+                src={`http://143.110.239.160:5000/uploads/${img.slice(8)}`}
                 className="h-[100px] rounded-md"
                 alt=""
               />
@@ -92,7 +89,7 @@ const ProductDetails = () => {
           </div>
           {singleProduct?.images && singleProduct.images.length > 0 && (
             <img
-              src={`http://localhost:5000/uploads/${
+              src={`http://143.110.239.160:5000/uploads/${
                 singleProduct.images.length !== 0
                   ? singleProduct.images[0].slice(8)
                   : "assets/product-2.jpg"
@@ -111,7 +108,7 @@ const ProductDetails = () => {
                   {/* {singleProduct?.totalrating === 0
                     ? "0.0 Baholar hali yoʻq"
                     : singleProduct?.totalrating} */}
-                    0.0 Baholar hali yoʻq
+                  0.0 Baholar hali yoʻq
                 </p>
               </div>
               <div className="text-[#8b8e99] text-[13px]">

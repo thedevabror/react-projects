@@ -65,7 +65,7 @@ const CategoriesProducts = () => {
           {productCategories?.map((item) => {
             return (
               <div className="">
-                {allProducts.filter((pro) => pro.category.name === item.name)
+                {allProducts.filter((pro) => pro.category === item._id)
                   .length === 0 ? (
                   <></>
                 ) : (
@@ -97,7 +97,7 @@ const CategoriesProducts = () => {
                   className="pt-5 flex gap-10"
                 >
                   {allProducts
-                    .filter((pro) => pro.category.name === item.name)
+                    .filter((pro) => pro.category === item._id)
                     .map((i) => (
                       <Link
                         to={`products/${i._id}`}
@@ -112,7 +112,7 @@ const CategoriesProducts = () => {
                         <div className="product-img overflow-hidden">
                           <img
                             src={`
-                            http://localhost:5000/uploads/${i.images.length !== 0
+                            http://143.110.239.160:5000/uploads/${i.images.length !== 0
                                 ? i.images[0].slice(8)
                                 : "assets/product-2.jpg"}
                             `}

@@ -9,7 +9,7 @@ import { HiMiniStar } from "react-icons/hi2";
 const SingleCategory = () => {
   const { id } = useParams();
   const [category, setCategory] = useState("");
-  const [allProducts, setAllProducts] = useState([])
+  const [allProducts, setAllProducts] = useState([]);
   // const { allProducts } = useSelector((state) => state.productCategory);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const SingleCategory = () => {
       setCategory(response);
       const res = await ProductService.getAllProducts();
       // console.log(res);
-      setAllProducts(res)
+      setAllProducts(res);
     };
 
     getCategory();
@@ -44,22 +44,22 @@ const SingleCategory = () => {
                 </div>
                 <div className="product-img overflow-hidden">
                   <img
-                    src={
+                    src={`https://abrorkhandev.uz/public/${
                       item.images.length !== 0
-                        ? item.images[0].url
+                        ? item.images[0].slice(8)
                         : "assets/product-2.jpg"
-                    }
+                    }`}
                     alt=""
                     className="object-contain rounded-lg hover:scale-110 transition-all duration-300"
                   />
                 </div>
                 <div className="product-details p-[10px]">
                   <h6 className="brand text-[13px] text-primary">
-                    {item.brand}
+                    {/* {item.brand} */}
                   </h6>
                   <Link to={`/products/${item._id}`}>
                     <h5 className="text-[12.8px] leading-[15.36px] font-custom">
-                      {item.title}
+                      {item.name}
                     </h5>
                   </Link>
                   <div className="flex items-center gap-1">

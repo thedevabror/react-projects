@@ -28,10 +28,10 @@ const SingleCategory = () => {
   return (
     <>
       <div className="products px-1 py-10 xl:px-80">
-        <h1 className="section-heading">{category.title}</h1>
+        <h1 className="section-heading">{category.name}</h1>
         <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 lg:gap-5  p-[15px]">
           {allProducts
-            .filter((item) => item.category === category.title)
+            .filter((item) => item.category === category._id)
             .map((item) => (
               <div
                 key={item._id}

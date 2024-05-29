@@ -15,7 +15,7 @@ const ProductService = {
     return data;
   },
   async getSingleCategory(id) {
-    const { data } = await api.get(`category/${id}`);
+    const { data } = await api.get(`categories/${id}`);
     return data;
   },
 

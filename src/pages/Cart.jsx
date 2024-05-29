@@ -86,7 +86,7 @@ const Cart = () => {
                           <div className="product-img">
                             <img
                               src={`
-                             https://abrorkhandev.uz/uploads/${
+                             https://abrorkhandev.uz/public/${
                                item.product.images.length !== 0
                                  ? item.product.images[0].slice(8)
                                  : "assets/product-2.jpg"

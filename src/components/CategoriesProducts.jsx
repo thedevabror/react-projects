@@ -104,13 +104,13 @@ const CategoriesProducts = () => {
                 {categoryProducts.map((i) => (
                   <SwiperSlide
                     key={i._id}
-                    className="rounded-lg overflow-hidden"
+                    className="rounded-lg overflow-hidden border hover:border-gray-400"
                   >
                     <Link
                       to={`products/${i._id}`}
                       className="relative transition-all duration-300 hover:shadow hover:bg-white"
                     >
-                      <div className="absolute top-[3%] z-20 right-4 text-2xl">
+                      <div className="absolute w-full top-[1%] z-20 left-24 text-2xl">
                         <button>
                           <IoMdHeartEmpty />
                         </button>

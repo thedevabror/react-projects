@@ -165,7 +165,7 @@ export function NavbarWithMegaMenu() {
 
   return (
     <>
-      <Navbar className="mx-auto max-w-screen-2xl px-4 py-2 shadow-none">
+      <Navbar className="mx-auto w-full px-4 py-2 shadow-none">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
             as={"a"}

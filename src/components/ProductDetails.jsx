@@ -75,13 +75,13 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-10 px-10 2xl:px-72">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 py-10 px-10 2xl:px-72">
         <div className="flex flex-col sm:flex-row gap-5">
           <div className="h-[100px] grid grid-cols-1 gap-5">
             {singleProduct?.images?.map((img, index) => (
               <img
                 key={index}
-                src={`http://143.110.239.160:5000/uploads/${img.slice(8)}`}
+                src={`https://abrorkhandev.uz/uploads/${img.slice(8)}`}
                 className="h-[100px] rounded-md"
                 alt=""
               />
@@ -89,7 +89,7 @@ const ProductDetails = () => {
           </div>
           {singleProduct?.images && singleProduct.images.length > 0 && (
             <img
-              src={`http://143.110.239.160:5000/uploads/${
+              src={`https://abrorkhandev.uz/uploads/${
                 singleProduct.images.length !== 0
                   ? singleProduct.images[0].slice(8)
                   : "assets/product-2.jpg"

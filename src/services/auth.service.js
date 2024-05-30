@@ -10,7 +10,7 @@ const AuthService = {
     return data;
   },
   async forgotPassword(email) {
-    const { data } = await api.post(`users/forgot-password`, {email});
+    const { data } = await api.post(`users/forgot-password`, { email });
     return data;
   },
   async updatePassword(password) {
@@ -18,7 +18,7 @@ const AuthService = {
     return data;
   },
   async getUser(id) {
-    const data = api.get(`users/${id}`);
+    const { data } = api.get(`users/${id}`);
     return data;
   },
   async addAddress(address, id) {

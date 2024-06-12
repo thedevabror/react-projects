@@ -2,7 +2,7 @@ import React from "react";
 import Carousel from "react-material-ui-carousel";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Categorys } from "../components";
+import { CategoryList, Categorys } from "../components";
 
 const Home = () => {
   return (
@@ -25,9 +25,6 @@ const Home = () => {
       </section>
        <section className="py-10 px-4 lg:px-20 3xl:px-72 hero">
         <CategoryList />
-      </section>
-      <section className="products py-10 px-4 lg:px-20 3xl:px-72 ">
-        <AProducts />
       </section>
       <section className="products py-10 px-4 lg:px-20 3xl:px-72 ">
         <Categorys />

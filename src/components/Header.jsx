@@ -22,7 +22,6 @@ import { FaUserLarge } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Cart } from "../utils/svgs";
-// import Dwider from "./Dwider";
 import ProductService from "../services/product.service";
 import {
   getCategoryStart,
@@ -186,14 +185,13 @@ export function NavbarWithMegaMenu() {
                 size="md"
                 className="flex items-center gap-3 justify-center"
                 fullWidth
-                // onClick={openDrawer}
               >
                 <Cart /> <p>Savat</p>
               </Button>
             </Link>
             {logined === "true" ? (
-              <Link to={"/user"}>
-                <Button className="bg-primary hover:shadow-none shadow-none flex gap-2 items-center">
+              <Link to={"/user"} className="hover:bg-purple-900">
+                <Button className="bg-primary hover:shadow-none shadow-none flex gap-2 items-center hover:bg-purple-200">
                   <FaUserLarge className="text-xl" />
                   <p>{userName}</p>
                 </Button>
@@ -222,7 +220,7 @@ export function NavbarWithMegaMenu() {
         <Collapse open={openNav}>
           <NavList />
           <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-            <Link to={logined === "true" ? "/dashboard/cart" : "/cart"}>
+            <Link to={"/cart"}>
               <Button
                 variant="text"
                 size="md"
@@ -234,7 +232,7 @@ export function NavbarWithMegaMenu() {
               </Button>
             </Link>
             {logined === "true" ? (
-              <Link to={"/dashboard/user"}>
+              <Link to={"/user"}>
                 <Button className="bg-primary hover:shadow-none shadow-none flex gap-2 items-center">
                   <FaUserLarge className="text-xl" />
                   <p>{userName}</p>

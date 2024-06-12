@@ -23,12 +23,6 @@ const Home = () => {
           </Carousel>
         </div>
       </section>
-      <section className="py-10 px-4 lg:px-20 3xl:px-72 hero">
-        <CategoryList />
-      </section>
-      <section className="products py-10 px-4 lg:px-20 3xl:px-72 ">
-        <AProducts />
-      </section>
       <section className="products py-10 px-4 lg:px-20 3xl:px-72 ">
         <Categorys />
       </section>

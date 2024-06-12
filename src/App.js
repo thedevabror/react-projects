@@ -3,14 +3,11 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { About, Home, Login, NotFound, Signup, Cart, Account } from "./pages";
 import { Category, Layout, Product } from "./components";
 import "react-toastify/dist/ReactToastify.css";
-import ProtectedRoute from "./routes/ProtectedRoute";
-import RouteLogin from "./routes/RouteLogin";
+import PublicRoute from "./routes/PublicRoute";
+import PrivateRoute from "./routes/PrivateRoute";
+import SignUp from "./pages/SignUp";
 
 function App() {
-  const logined = sessionStorage.getItem("logined");
-  if (logined === "true") {
-    <Navigate to={"/dashboard"} />;
-  }
   return (
     <div className="transition-all duration-300">
       <Routes>
@@ -21,28 +18,20 @@ function App() {
           <Route
             path="user"
             element={
-              <ProtectedRoute logined={logined}>
+              <PrivateRoute>
                 <Account />
-              </ProtectedRoute>
+              </PrivateRoute>
             }
           />
           <Route path="products/:id" element={<Product />} />
           <Route path="category/:id" element={<Category />} />
           <Route
             path="/auth/login"
-            element={
-              <RouteLogin logined={logined}>
-                <Login />
-              </RouteLogin>
-            }
+            element={<PublicRoute component={<Login />} />}
           />
           <Route
             path="/auth/register"
-            element={
-              <RouteLogin logined={logined}>
-                <Signup />
-              </RouteLogin>
-            }
+            element={<PublicRoute component={<SignUp />} />}
           />
           <Route path="*" element={<NotFound />} />
         </Route>

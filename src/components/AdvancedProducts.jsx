@@ -1,10 +1,8 @@
 import React from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { HiMiniStar } from "react-icons/hi2";
-import { products } from "../data";
 import { AddCart } from "../utils/svgs";
 import { useSelector } from "react-redux";
-import { TbReload } from "react-icons/tb";
 import LoadingProduct from "../utils/LoadingProduct";
 
 const AdvancedProducts = () => {

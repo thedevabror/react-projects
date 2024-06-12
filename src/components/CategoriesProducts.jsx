@@ -48,7 +48,7 @@ const CategoriesProducts = () => {
           return (
             <div key={item._id}>
               <div className="flex items-center justify-between py-5">
-                <Link className="flex items-center gap-2" to={item._id}>
+                <Link className="flex items-center gap-2" to={`category/${item._id}`}>
                   <h1 className="section-heading mb-0">{item.name}</h1>
                   <MdArrowForwardIos className="section-heading" />
                 </Link>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ProductService from "../services/product.service";
-import { useSelector } from "react-redux";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { AddCart } from "../utils/svgs";
 import { HiMiniStar } from "react-icons/hi2";
@@ -10,7 +9,6 @@ const SingleCategory = () => {
   const { id } = useParams();
   const [category, setCategory] = useState("");
   const [allProducts, setAllProducts] = useState([]);
-  // const { allProducts } = useSelector((state) => state.productCategory);
 
   useEffect(() => {
     const getCategory = async () => {
@@ -18,12 +16,11 @@ const SingleCategory = () => {
       console.log(response);
       setCategory(response);
       const res = await ProductService.getAllProducts();
-      // console.log(res);
       setAllProducts(res);
     };
 
     getCategory();
-  }, []);
+  }, [id]);
 
   return (
     <>

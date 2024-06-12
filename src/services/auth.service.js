@@ -18,7 +18,7 @@ const AuthService = {
     return data;
   },
   async getUser(id) {
-    const { data } = api.get(`users/${id}`);
+    const data = api.get(`users/${id}`);
     return data;
   },
   async addAddress(address, id) {

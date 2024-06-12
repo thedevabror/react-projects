@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCartStart, addCartSuccess } from "../app/slice/auth";
 import AuthService from "../services/auth.service";
@@ -23,7 +23,6 @@ const Cart = () => {
       try {
         const response = await AuthService.userCart(id);
         dispatch(addCartSuccess(response));
-        // console.log(response);
         console.log(userCart);
       } catch (error) {}
     };
@@ -37,16 +36,20 @@ const Cart = () => {
       window.location.reload();
     } catch (error) {}
   };
-  if (!Array.isArray(userCart.cartItems)) {
-    console.error("userCart is not an array:", userCart);
-    return <div>Error: userCart is not an array.</div>;
-  }
+  // if (!Array.isArray(userCart.cartItems)) {
+  //   console.error("userCart is not an array:", userCart);
+  //   return <div>Error: userCart is not an array.</div>;
+  // }
   const handleCheckout = async () => {
-    try {
-      const response = await AuthService.chaeckOut(id)
-      console.log("Order created:", response);
-    } catch (error) {
-      console.error("Error creating order:", error);
+    if (userCart == {}) {
+      return <h1>Savat bo'sh</h1>;
+    } else {
+      try {
+        const response = await AuthService.chaeckOut(id);
+        console.log("Order created:", response);
+      } catch (error) {
+        console.error("Error creating order:", error);
+      }
     }
   };
   return (
@@ -56,11 +59,10 @@ const Cart = () => {
       </div>
       <div className="hidden items-center justify-between px-2 lg:flex">
         <h1>Maxsulotlar</h1>
-        <div className="flex items-center gap-20">
-          <h1></h1>
-        </div>
+        <div className="flex items-center gap-20"></div>
       </div>
       <hr />
+
       <>
         {logined !== "true" ? (
           <>
@@ -68,10 +70,16 @@ const Cart = () => {
           </>
         ) : (
           <>
-            {userCart?.cartItems?.products?.length === 0 ? (
-              <div>
+            {userCart?.cartItems?.length === 0 ? (
+              <div className="max-w-2xl w-xl m-auto text-center h-full flex flex-col items-center justify-center">
                 <h1>Savtingizda maxsulotlar yo'q ):</h1>
-                <Link to={"/dashboard"}>Xaridga o'tish</Link>
+                <Button>
+                  <Link
+                    to={"/"}
+                  >
+                    Xaridga o'tish
+                  </Link>
+                </Button>
               </div>
             ) : (
               <>
@@ -139,7 +147,7 @@ const Cart = () => {
                             <div className="w-[80px] text-end">
                               <h1 className="product-heading">
                                 $
-                                {item?.product?.price == item.quantity
+                                {item?.product?.price === item.quantity
                                   ? item?.product?.price
                                   : item?.product?.price * item.quantity}
                               </h1>

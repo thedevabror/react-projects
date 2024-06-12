@@ -5,11 +5,9 @@ import { AddAddress } from "../components/AddAddress";
 import { MdEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { EditUser } from "../components/EditUser";
-import { useDispatch } from "react-redux";
 
 const AccountDetails = () => {
-  const dispatch = useDispatch();
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState({});
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(false);
 
@@ -22,7 +20,8 @@ const AccountDetails = () => {
       try {
         const response = await AuthService.getUser(id);
         // dispatch()
-        setUserData(response);
+        console.log(response);
+        setUserData(response.data);
         console.log(userData);
       } catch (error) {
         console.log(error);

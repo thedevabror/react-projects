@@ -2,7 +2,7 @@ import React from "react";
 import Carousel from "react-material-ui-carousel";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { AProducts, CategoryList, Categorys } from "../components";
+import { Categorys } from "../components";
 
 const Home = () => {
   return (

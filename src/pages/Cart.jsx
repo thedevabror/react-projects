@@ -73,13 +73,9 @@ const Cart = () => {
             {userCart?.cartItems?.length === 0 ? (
               <div className="max-w-2xl w-xl m-auto text-center h-full flex flex-col items-center justify-center">
                 <h1>Savtingizda maxsulotlar yo'q ):</h1>
-                <Button>
-                  <Link
-                    to={"/"}
-                  >
-                    Xaridga o'tish
-                  </Link>
-                </Button>
+                <Link to={"/products"}>
+                  <Button>Xaridga o'tish</Button>
+                </Link>
               </div>
             ) : (
               <>

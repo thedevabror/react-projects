@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import PublicRoute from "./routes/PublicRoute";
 import PrivateRoute from "./routes/PrivateRoute";
 import SignUp from "./pages/SignUp";
+import AllProducts from "./components/AllProducts";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="products" element={<AllProducts />} />
           <Route path="about" element={<About />} />
           <Route path="cart" element={<Cart />} />
           <Route

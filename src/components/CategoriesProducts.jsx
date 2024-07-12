@@ -33,6 +33,17 @@ const CategoriesProducts = () => {
     }
   };
 
+  if (productCategories.length === 0) {
+    return (
+      <div className="my-auto max-h-screen h-auto">
+        {" "}
+        <h1 className="text-3xl font-bold text-center">
+          Maxsulotlar topilmadi ):
+        </h1>{" "}
+      </div>
+    );
+  }
+
   return (
     <div>
       {isLoading ? (
@@ -48,7 +59,10 @@ const CategoriesProducts = () => {
           return (
             <div key={item._id}>
               <div className="flex items-center justify-between py-5">
-                <Link className="flex items-center gap-2" to={`category/${item._id}`}>
+                <Link
+                  className="flex items-center gap-2"
+                  to={`category/${item._id}`}
+                >
                   <h1 className="section-heading mb-0">{item.name}</h1>
                   <MdArrowForwardIos className="section-heading" />
                 </Link>

@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./axiosConfig";
 
 const api = axios.create({
-  baseURL: "https://abrorkhandev.uz/api/",
+  baseURL: "http://localhost:5000/api/",
   headers: {
     Accept: "application/json",
   },

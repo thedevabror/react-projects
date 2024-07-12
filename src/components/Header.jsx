@@ -12,6 +12,7 @@ import {
   MenuList,
   MenuItem,
   Input,
+  Badge,
 } from "@material-tailwind/react";
 import {
   ChevronDownIcon,
@@ -34,8 +35,7 @@ let navListMenuItems = [];
 function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-
-  const renderItems = navListMenuItems.map(({ name, _id }) => (
+  let renderItems = navListMenuItems.map(({ name, _id }) => (
     <Link to={`/category/${_id}`} key={_id}>
       <MenuItem className="flex items-center gap-3 rounded-lg">
         <div>
@@ -50,7 +50,17 @@ function NavListMenu() {
       </MenuItem>
     </Link>
   ));
-
+  if (navListMenuItems.length === 0) {
+    renderItems = (
+      <Typography
+        variant="h6"
+        color="blue-gray"
+        className="flex items-center text-sm font-bold"
+      >
+        Kategoriyalar topilmadi :(
+      </Typography>
+    );
+  }
   return (
     <React.Fragment>
       <Menu
@@ -101,7 +111,7 @@ function NavList() {
     e.preventDefault();
     const formData = new FormData(e.currentTavrget);
     const value = formData.get("search");
-    console.log(value)
+    console.log(value);
   };
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 items-center">
@@ -122,7 +132,7 @@ function NavList() {
         />
         <Button
           size="sm"
-          className="!absolute right-1 top-1 rounded bg-primary"
+          className="!absolute right-1 top-1 rounded bg-primary hover:bg-purple-900"
           type="submit"
         >
           qidirish
@@ -135,6 +145,7 @@ function NavList() {
 export function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = React.useState(false);
   const { productCategories } = useSelector((state) => state.productCategory);
+  const { userCart } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   useEffect(() => {
     const getCategories = async () => {
@@ -165,7 +176,7 @@ export function NavbarWithMegaMenu() {
 
   return (
     <>
-      <Navbar className="mx-auto w-full px-4 py-2 shadow-none">
+      <Navbar className="mx-auto w-full px-4 py-4 shadow-none">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
             as={"a"}
@@ -178,20 +189,23 @@ export function NavbarWithMegaMenu() {
           <div className="hidden lg:block w-full">
             <NavList />
           </div>
-          <div className="hidden gap-2 lg:flex">
+          <div className="hidden gap-5 lg:flex">
             <Link to={"/cart"}>
-              <Button
-                variant="text"
-                size="md"
-                className="flex items-center gap-3 justify-center"
-                fullWidth
-              >
-                <Cart /> <p>Savat</p>
-              </Button>
+              <Badge content={userCart == {} ? "0": userCart?.cartItems?.length} withBorder>
+                <Button
+                  variant="text"
+                  size="md"
+                  className="flex items-center gap-3 justify-center"
+                  fullWidth
+                  // onClick={openDrawer}
+                >
+                  <Cart /> <p>Savat</p>
+                </Button>
+              </Badge>
             </Link>
             {logined === "true" ? (
-              <Link to={"/user"} className="hover:bg-purple-900">
-                <Button className="bg-primary hover:shadow-none shadow-none flex gap-2 items-center hover:bg-purple-200">
+              <Link to={"/user"}>
+                <Button className="bg-primary hover:shadow-none shadow-none flex gap-2 items-center hover:bg-purple-900">
                   <FaUserLarge className="text-xl" />
                   <p>{userName}</p>
                 </Button>
@@ -221,15 +235,17 @@ export function NavbarWithMegaMenu() {
           <NavList />
           <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
             <Link to={"/cart"}>
-              <Button
-                variant="text"
-                size="md"
-                className="flex items-center gap-3 justify-center"
-                fullWidth
-                // onClick={openDrawer}
-              >
-                <Cart /> <p>Savat</p>
-              </Button>
+              <Badge content={userCart == {} ? "0" : userCart?.cartItems?.length} withBorder>
+                <Button
+                  variant="text"
+                  size="md"
+                  className="flex items-center gap-3 justify-center"
+                  fullWidth
+                  // onClick={openDrawer}
+                >
+                  <Cart /> <p>Savat</p>
+                </Button>
+              </Badge>
             </Link>
             {logined === "true" ? (
               <Link to={"/user"}>

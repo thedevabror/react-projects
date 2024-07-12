@@ -28,7 +28,8 @@ const LogIn = () => {
       const response = await AuthService.userLogin(user);
       dispatch(logInUserSuccess(response));
       toast.success("Success!");
-      navigate("/");
+      // navigate("/");
+      window.location.reload()
     } catch (error) {
       dispatch(logInUserFailure(error));
       toast.error("Success!");

@@ -30,7 +30,8 @@ const SignUp = () => {
       const respons = await api.post(`users/register`, data);
       dispatch(signUserSuccess(respons.data));
       toast.success("Success!")
-      navigate('/')
+      // navigate('/')
+      window.location.reload()
     } catch (error) {
       toast.error("Error!")
       dispatch(signUserFailure(error));

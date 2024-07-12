@@ -7,11 +7,12 @@ import AuthService from "../services/auth.service";
 // import { TbMinus } from "react-icons/tb";
 import { Button } from "@material-tailwind/react";
 import { MdDelete } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import AddCoupon from "../components/AddCoupon";
 
 const Cart = () => {
   const { userCart } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   const logined = sessionStorage.getItem("logined");
   const id = sessionStorage.getItem("id");
   const deliveryPrice = 3;
@@ -44,12 +45,13 @@ const Cart = () => {
     if (userCart == {}) {
       return <h1>Savat bo'sh</h1>;
     } else {
-      try {
-        const response = await AuthService.chaeckOut(id);
-        console.log("Order created:", response);
-      } catch (error) {
-        console.error("Error creating order:", error);
-      }
+      // try {
+      //   const response = await AuthService.chaeckOut(id);
+      //   console.log("Order created:", response);
+      // } catch (error) {
+      //   console.error("Error creating order:", error);
+      // }
+      navigate("/order-details")
     }
   };
   return (

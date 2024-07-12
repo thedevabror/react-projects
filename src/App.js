@@ -1,6 +1,6 @@
 import "./App.css";
-import { Navigate, Route, Routes } from "react-router-dom";
-import { About, Home, Login, NotFound, Signup, Cart, Account } from "./pages";
+import { Route, Routes } from "react-router-dom";
+import { About, Home, Login, NotFound, Cart, Account, OrderDetails } from "./pages";
 import { Category, Layout, Product } from "./components";
 import "react-toastify/dist/ReactToastify.css";
 import PublicRoute from "./routes/PublicRoute";
@@ -22,6 +22,14 @@ function App() {
             element={
               <PrivateRoute>
                 <Account />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="order-details"
+            element={
+              <PrivateRoute>
+                <OrderDetails />
               </PrivateRoute>
             }
           />

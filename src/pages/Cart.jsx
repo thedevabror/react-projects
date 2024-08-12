@@ -92,7 +92,7 @@ const Cart = () => {
                           <div className="product-img">
                             <img
                               src={`
-                             https://abrorkhandev.uz/public/${
+                             https://store24-backend-production.up.railway.app/public/${
                                item.product.images.length !== 0
                                  ? item.product.images[0].slice(8)
                                  : "assets/product-2.jpg"

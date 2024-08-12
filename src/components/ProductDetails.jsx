@@ -81,7 +81,7 @@ const ProductDetails = () => {
             {singleProduct?.images?.map((img, index) => (
               <img
                 key={index}
-                src={`https://abrorkhandev.uz/public/${img.slice(8)}`}
+                src={`https://store24-backend-production.up.railway.app/public/${img.slice(8)}`}
                 className="h-[100px] rounded-md"
                 alt=""
               />
@@ -89,7 +89,7 @@ const ProductDetails = () => {
           </div>
           {singleProduct?.images && singleProduct.images.length > 0 && (
             <img
-              src={`https://abrorkhandev.uz/public/${
+              src={`https://store24-backend-production.up.railway.app/public/${
                 singleProduct.images.length !== 0
                   ? singleProduct.images[0].slice(8)
                   : "assets/product-2.jpg"

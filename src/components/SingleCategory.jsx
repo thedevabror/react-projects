@@ -41,7 +41,7 @@ const SingleCategory = () => {
                 </div>
                 <div className="product-img overflow-hidden">
                   <img
-                    src={`https://abrorkhandev.uz/public/${
+                    src={`https://store24-backend-production.up.railway.app/public/${
                       item.images.length !== 0
                         ? item.images[0].slice(8)
                         : "assets/product-2.jpg"

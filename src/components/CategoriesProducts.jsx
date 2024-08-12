@@ -131,7 +131,7 @@ const CategoriesProducts = () => {
                       </div>
                       <div className="product-img overflow-hidden">
                         <img
-                          src={`https://abrorkhandev.uz/public/${
+                          src={`https://store24-backend-production.up.railway.app/public/${
                             i.images.length !== 0
                               ? i.images[0].slice(8)
                               : "assets/product-2.jpg"

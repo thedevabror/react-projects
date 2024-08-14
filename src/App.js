@@ -12,37 +12,27 @@ function App() {
   return (
     <div className="transition-all duration-300">
       <Routes>
-        <Route exact path="/" element={<Layout />}>
+        {/* Main layout wrapper */}
+        <Route path="/" element={<Layout />}>
+          {/* Home page */}
           <Route index element={<Home />} />
+          
+          {/* Public routes */}
           <Route path="products" element={<AllProducts />} />
           <Route path="about" element={<About />} />
           <Route path="cart" element={<Cart />} />
-          <Route
-            path="user"
-            element={
-              <PrivateRoute>
-                <Account />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="order-details"
-            element={
-              <PrivateRoute>
-                <OrderDetails />
-              </PrivateRoute>
-            }
-          />
           <Route path="products/:id" element={<Product />} />
           <Route path="category/:id" element={<Category />} />
-          <Route
-            path="/auth/login"
-            element={<PublicRoute component={<Login />} />}
-          />
-          <Route
-            path="/auth/register"
-            element={<PublicRoute component={<SignUp />} />}
-          />
+          
+          {/* Authentication routes */}
+          <Route path="/auth/login" element={<PublicRoute component={<Login />} />} />
+          <Route path="/auth/register" element={<PublicRoute component={<SignUp />} />} />
+          
+          {/* Private routes */}
+          <Route path="user" element={<PrivateRoute><Account /></PrivateRoute>} />
+          <Route path="order-details" element={<PrivateRoute><OrderDetails /></PrivateRoute>} />
+          
+          {/* 404 Not Found route */}
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

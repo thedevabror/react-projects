@@ -75,8 +75,8 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 py-10 px-10 2xl:px-52">
-        <div className="flex flex-col lg:flex-row gap-5">
+      <div className="grid grid-cols-1 gap-5 px-10 py-10 md:grid-cols-2 2xl:px-52">
+        <div className="flex flex-col gap-5 lg:flex-row">
           <div className="h-[100px] flex flex-row lg:flex-col gap-5">
             {singleProduct?.images?.map((img, index) => (
               <img
@@ -90,8 +90,8 @@ const ProductDetails = () => {
           {singleProduct?.images && singleProduct.images.length > 0 && (
             <img
               src={`https://store24-backend-production.up.railway.app/public/${
-                singleProduct.images.length !== 0
-                  ? singleProduct.images[0].slice(8)
+                singleProduct?.images?.length !== 0
+                  ? singleProduct?.images[0]?.slice(8)
                   : "assets/product-2.jpg"
               }`}
               alt=""
@@ -99,9 +99,9 @@ const ProductDetails = () => {
             />
           )}
         </div>
-        <div className="product-detail flex flex-col gap-5">
+        <div className="flex flex-col gap-5 product-detail">
           <div className="flex items-center justify-between w-[100%]">
-            <div className="flex gap-5 items-center">
+            <div className="flex items-center gap-5">
               <div className="text-[#8b8e99] text-[13px]">
                 <p className="flex items-center gap-1 cursor-pointer">
                   <HiMiniStar className="text-[#F5A623] text-[14px]" />{" "}
@@ -213,7 +213,7 @@ const ProductDetails = () => {
           <div>
             <button
               className="px-10 text-xl button bg-primary hover:bg-primary/85 text-[#fff]"
-              onClick={() => addCart(singleProduct._id)}
+              onClick={() => addCart(singleProduct.id)}
             >
               Savatga qo'shish
             </button>
@@ -221,7 +221,7 @@ const ProductDetails = () => {
         </div>
       </div>{" "}
       <ToastContainer autoClose={1000} />
-      {/* <div className="py-10 px-10 2xl:px-72">
+      {/* <div className="px-10 py-10 2xl:px-72">
         <h1 className="section-heading">O'xshash maxsulotlar</h1>
         <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 lg:gap-5  p-[15px]">
           {allProducts
@@ -231,14 +231,14 @@ const ProductDetails = () => {
                 key={item._id}
                 to={`/products/${item._id}`}
                 target="_blank"
-                className="relative transition-all duration-300  hover:shadow hover:bg-white rounded-lg overflow-hidden"
+                className="relative overflow-hidden transition-all duration-300 rounded-lg hover:shadow hover:bg-white"
               >
                 <div className="absolute top-[3%] z-20 right-4 text-2xl">
                   <button>
                     <IoMdHeartEmpty />
                   </button>
                 </div>
-                <div className="product-img overflow-hidden">
+                <div className="overflow-hidden product-img">
                   <img
                     src={
                       item.images.length !== 0
@@ -246,7 +246,7 @@ const ProductDetails = () => {
                         : "assets/product-2.jpg"
                     }
                     alt=""
-                    className="object-contain rounded-lg hover:scale-110 transition-all duration-300"
+                    className="object-contain transition-all duration-300 rounded-lg hover:scale-110"
                   />
                 </div>
                 <div className="product-details p-[10px]">
@@ -262,7 +262,7 @@ const ProductDetails = () => {
                       {item.totalrating}
                     </p>
                   </div>
-                  <div className="flex justify-between items-center">
+                  <div className="flex items-center justify-between">
                     <p className="text-[14px]">${item.price}</p>
                     <button className="border p-1 rounded-full transition-all duration-300 hover:bg-[#dfe1ea]">
                       <AddCart />
